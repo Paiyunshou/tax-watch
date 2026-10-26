@@ -1,0 +1,141 @@
+# =============================================================================
+# 财税公告监管 —— 数据源配置
+# -----------------------------------------------------------------------------
+# 加一个新的监控页面 = 在 sources 列表里追加一段配置，其它什么都不用改。
+#
+# 字段说明（所有字段都可省略，省略时取默认值）：
+#   name            源名称，唯一，会出现在飞书消息和 seen.json 里
+#   type            public      = 公开页面，Actions 正常抓取（默认）
+#                   auth-cookie = 需要登录/Cookie 才能看，抓取脚本会直接跳过并打印日志
+#                                 （本工具不保存、不使用任何账号密码）
+#   enabled         true / false，false 则该源完全不处理
+#   mode            html     = 用 CSS 选择器解析列表页（默认）
+#                   json_api = 列表页是 JS 动态渲染时，直接调用站点内部的 JSON 接口
+#   url             列表页地址（mode=html 必填；mode=json_api 时可留空，仅作展示用）
+#   base_url        拼接相对链接用；不填则用 url 的 origin
+#   list_selector   [html] 每条公告的选择器，例如 "div.xwfb_listerji li"
+#   title_selector  [html] 条目内标题，默认 "a"
+#   link_selector   [html] 条目内链接，默认 "a"
+#   date_selector   [html] 条目内日期，可省略（省略则从详情页/接口取）
+#   content_selector 详情页正文容器，省略时自动启发式识别
+#   keywords        只保留标题命中任一词的公告（避免抓到无关内容）；省略=全收
+#   exclude_keywords 标题命中任一词则丢弃
+#   verify_ssl      true（默认）/ false（证书链有问题的站，如海关总署）
+#   api             [mode=json_api] 接口细节：endpoint / method / channel_id / page_size / max_pages
+#
+# 【fgk 法规库怎么换栏目】打开 https://fgk.chinatax.gov.cn 里你关心的栏目页，
+#   按 Ctrl+U 看网页源码，搜 "var channelId"，后面引号里那串 32 位 ID 就是 channel_id。
+#   已经实测可用的栏目（2026-10 数据）：
+#     c100009 法律 75 条 | c100010 行政法规 65 条 | c100012 税务规范性文件 1926 条
+#     c100013 其他文件 489 条 | c102416 财税文件 1533 条 | c102424 工作通知 814 条
+# =============================================================================
+
+defaults:
+  verify_ssl: true
+  max_new_per_source: 15      # 单个源每次最多处理多少条新增，防止首次运行刷屏
+  request_delay: [1.5, 4.0]   # 每个请求之间的随机延时（秒），反爬用
+  timeout: 30
+
+sources:
+
+  # ---------------------------------------------------------------- 税务总局
+  - name: 税务总局-税务规范性文件
+    type: public
+    enabled: true
+    mode: json_api
+    url: https://fgk.chinatax.gov.cn/zcfgk/c100012/listflfg.html
+    base_url: https://fgk.chinatax.gov.cn
+    url_host_rewrite: fgk.chinatax.gov.cn   # 接口返回的是 www.chinatax.gov.cn，正文只在 fgk 域名下
+    content_selector: "div.arc_cont"
+    api:
+      endpoint: https://www.chinatax.gov.cn/getFileListByCodeId
+      method: POST
+      channel_id: 470b437b304f434396500a1e2edc7f28
+      page_size: 20
+      max_pages: 2
+
+  - name: 税务总局-财税文件
+    type: public
+    enabled: true
+    mode: json_api
+    url: https://fgk.chinatax.gov.cn/zcfgk/c102416/listflfg.html
+    base_url: https://fgk.chinatax.gov.cn
+    url_host_rewrite: fgk.chinatax.gov.cn   # 接口返回的是 www.chinatax.gov.cn，正文只在 fgk 域名下
+    content_selector: "div.arc_cont"
+    api:
+      endpoint: https://www.chinatax.gov.cn/getFileListByCodeId
+      method: POST
+      channel_id: 2cb303fdee614232b79552d52bb057d6
+      page_size: 20
+      max_pages: 2
+
+  - name: 税务总局-工作通知
+    type: public
+    enabled: true
+    mode: json_api
+    url: https://fgk.chinatax.gov.cn/zcfgk/c102424/listflfg.html
+    base_url: https://fgk.chinatax.gov.cn
+    url_host_rewrite: fgk.chinatax.gov.cn   # 接口返回的是 www.chinatax.gov.cn，正文只在 fgk 域名下
+    content_selector: "div.arc_cont"
+    api:
+      endpoint: https://www.chinatax.gov.cn/getFileListByCodeId
+      method: POST
+      channel_id: 7778c3a40a344de3a36ca88a2548f5f8
+      page_size: 20
+      max_pages: 1
+
+  # ------------------------------------------------------------------ 财政部
+  - name: 财政部-政策发布
+    type: public
+    enabled: true
+    mode: html
+    url: http://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/
+    base_url: http://www.mof.gov.cn
+    list_selector: "div.xwfb_listerji li"
+    title_selector: "a"
+    link_selector: "a"
+    content_selector: "div.TRS_Editor"
+    # 财政部门户站的内容较杂，按需打开关键词白名单（下面这行取消注释即启用）
+    # keywords: ["税", "关税", "会计", "财政", "补贴", "贴息", "政府采购", "预算"]
+
+  # ------------------------------------------------------------------ 外汇局
+  - name: 外汇局-政策法规
+    type: public
+    enabled: true
+    mode: html
+    url: https://www.safe.gov.cn/safe/zcfg/index.html
+    base_url: https://www.safe.gov.cn
+    list_selector: ".list_conr li"
+    title_selector: "a"
+    link_selector: "a"
+    keywords: ["外汇", "跨境", "经常项目", "资本项目", "结售汇", "外债", "境外"]
+
+  # ---------------------------------------------------------------- 海关总署
+  # 实测现状：站点的证书链不完整（自签名中间证书），且对非浏览器请求返回 412，
+  # 属于典型的 WAF 拦截。真要接的话需要浏览器 Cookie，所以这里按规则标记为
+  # auth-cookie 并保持 enabled: false —— 脚本会跳过它，不尝试任何登录。
+  # 后续如拿到公开可抓的镜像栏目（例如某关区的公开栏目页），改成 mode: html 即可。
+  - name: 海关总署-政策法规
+    type: auth-cookie
+    enabled: false
+    mode: html
+    url: http://www.customs.gov.cn/customs/302249/302266/302267/index.html
+    base_url: http://www.customs.gov.cn
+    list_selector: "ul.list li"
+    title_selector: "a"
+    link_selector: "a"
+    verify_ssl: false
+    note: "需人工在浏览器登录/过 WAF 后才能访问，按规则不自动处理"
+
+  # ------------------------------------------------- 新增监控源的模板（照抄改）
+  # - name: 某某局-通知公告
+  #   type: public
+  #   enabled: true
+  #   mode: html
+  #   url: https://example.gov.cn/tzgg/
+  #   base_url: https://example.gov.cn
+  #   list_selector: "ul.news-list li"
+  #   title_selector: "a"
+  #   link_selector: "a"
+  #   content_selector: "div.article-content"
+  #   keywords: ["税", "退税", "关税", "外汇"]
