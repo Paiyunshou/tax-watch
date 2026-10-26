@@ -1,13 +1,13 @@
 name: tax-watch
 
 # 定时抓取财税公告并推送到 Hermes。
-# 时间按 UTC 写：cron "17 0,3,6,9,12,15 * * *" = 北京时间 08:17 / 11:17 / 14:17 / 17:17 / 20:17 / 23:17
-# 每 3 小时一次，避开整点（GitHub 整点排队最严重，延迟可达 20 分钟以上）。
+# 每 12 小时抓一次。cron 用 UTC：北京时间 06:30 与 18:30
+# 比 Hermes 侧 08:30 的日报早 2 小时，留足 GitHub 排队延迟（通常 5-20 分钟）的余量。
 # 注意：GitHub 的 schedule 不保证准时，仓库连续 60 天无提交会被自动停用定时任务。
 
 on:
   schedule:
-    - cron: "17 0,3,6,9,12,15 * * *"
+    - cron: "30 22,10 * * *"
   workflow_dispatch:        # 手动触发：仓库 → Actions → tax-watch → Run workflow
 
 permissions:
