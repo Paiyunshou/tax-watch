@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 本地测试产物
+outbox/dryrun/
+hermes_side/data/
+*.log
+
+# 密钥绝不入库
+.env
