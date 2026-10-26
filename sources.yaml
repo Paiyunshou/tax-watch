@@ -32,7 +32,7 @@
 
 defaults:
   verify_ssl: true
-  max_new_per_source: 15      # 单个源每次最多处理多少条新增，防止首次运行刷屏
+  max_new_per_source: 1       # 单个源每次最多处理多少条新增（首跑限 1，稳定后可调到 10）
   request_delay: [1.5, 4.0]   # 每个请求之间的随机延时（秒），反爬用
   timeout: 30
 
