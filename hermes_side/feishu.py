@@ -214,8 +214,61 @@ def send_card(card: dict, dry_run: bool = False) -> bool:
     return False
 
 
+RISK_ORDER = {"高": 0, "中": 1, "低": 2}
+
+
+def build_digest_card(events: list[dict], date_label: str = "", max_items: int = 8) -> dict:
+    """把多条公告合成一张日报卡片，按风险高→低排序。"""
+    evs = sorted(events, key=lambda e: (
+        RISK_ORDER.get(((e.get("doc") or {}).get("risk_level") or "低"), 3),
+        str(e.get("published_at") or ""),
+    ))
+    top_risk = ((evs[0].get("doc") or {}).get("risk_level") or "低") if evs else "低"
+
+    elements: list[dict] = []
+    for i, e in enumerate(evs[:max_items], 1):
+        doc = e.get("doc") or {}
+        head = _h(doc.get("title_clean") or e.get("title") or "")
+        lines = [f"**{i}. [{head}]({e.get('url')})**"]
+        meta = []
+        if doc.get("doc_no"):
+            meta.append(_h(doc["doc_no"]))
+        if e.get("source"):
+            meta.append(_h(e["source"]))
+        if doc.get("effective_date"):
+            meta.append(f"生效 {doc['effective_date']}")
+        meta.append(f"风险 {doc.get('risk_level') or '低'}")
+        lines.append("　·　".join(meta))
+        if doc.get("summary"):
+            lines.append(_h(doc["summary"])[:130])
+        elements.append({"tag": "div", "text": {"tag": "lark_md", "content": "\n".join(lines)}})
+        if i < min(len(evs), max_items):
+            elements.append({"tag": "hr"})
+
+    if len(evs) > max_items:
+        elements.append({"tag": "note", "elements": [
+            {"tag": "plain_text", "content": f"另有 {len(evs) - max_items} 条未展示，可到仓库 outbox 查看"}]})
+    elements.append({"tag": "note", "elements": [{
+        "tag": "plain_text",
+        "content": f"共 {len(evs)} 条 · 来源：税务总局 / 财政部 / 外汇局 · 未写入思源，需要归档请手动处理",
+    }]})
+
+    return {
+        "config": {"wide_screen_mode": True},
+        "header": {
+            "template": RISK_COLOR.get(top_risk, "blue"),
+            "title": {"tag": "plain_text", "content": f"财税政策日报 · {date_label}"},
+        },
+        "elements": elements,
+    }
+
+
 def build_and_send(event: dict, dry_run: bool = False) -> bool:
     return send_card(build_card(event), dry_run=dry_run)
+
+
+def send_digest(events: list[dict], date_label: str = "", dry_run: bool = False) -> bool:
+    return send_card(build_digest_card(events, date_label), dry_run=dry_run)
 
 
 if __name__ == "__main__":
