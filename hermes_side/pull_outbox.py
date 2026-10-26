@@ -20,6 +20,7 @@ webhook 推送失败时会把事件写进仓库的 outbox/ 目录并提交，这
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import os
 from pathlib import Path
@@ -65,6 +66,19 @@ def list_outbox(repo: str, branch: str) -> list[dict]:
     return [f for f in files if f.get("name", "").endswith(".json")]
 
 
+def fetch_event(repo: str, path: str, branch: str) -> dict:
+    """用 Contents API 取文件内容。不用 download_url——它指向 raw.githubusercontent.com，
+    在部分网络环境下会被重置连接，api.github.com 反而稳定。"""
+    url = f"https://api.github.com/repos/{repo}/contents/{path}"
+    resp = requests.get(url, headers=api_headers(), params={"ref": branch}, timeout=20)
+    resp.raise_for_status()
+    data = resp.json()
+    content = data.get("content") or ""
+    if not content:
+        raise RuntimeError(f"{path} 过大或为空，无法通过 Contents API 读取")
+    return json.loads(base64.b64decode(content).decode("utf-8"))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=20)
@@ -90,8 +104,11 @@ def main() -> int:
         if args.dry_run:
             print(f"  [dry-run] 待补发 {event_id}  {f['name']}")
             continue
-        raw = requests.get(f["download_url"], timeout=20).text
-        event = json.loads(raw)
+        try:
+            event = fetch_event(repo, f"outbox/{f['name']}", args.branch)
+        except Exception as exc:  # noqa: BLE001
+            print(f"  ✗ 读取失败 {f['name']}：{exc}")
+            continue
         ok = feishu.build_and_send(event)
         print(f"  {'✓' if ok else '✗'} {event.get('title', '')[:50]}")
         if ok:
