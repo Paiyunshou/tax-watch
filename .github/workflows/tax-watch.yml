@@ -1,0 +1,70 @@
+name: tax-watch
+
+# 定时抓取财税公告并推送到 Hermes。
+# 时间按 UTC 写：cron "17 0,3,6,9,12,15 * * *" = 北京时间 08:17 / 11:17 / 14:17 / 17:17 / 20:17 / 23:17
+# 每 3 小时一次，避开整点（GitHub 整点排队最严重，延迟可达 20 分钟以上）。
+# 注意：GitHub 的 schedule 不保证准时，仓库连续 60 天无提交会被自动停用定时任务。
+
+on:
+  schedule:
+    - cron: "17 0,3,6,9,12,15 * * *"
+  workflow_dispatch:        # 手动触发：仓库 → Actions → tax-watch → Run workflow
+
+permissions:
+  contents: write           # 需要写回 seen.json / outbox
+
+concurrency:
+  group: tax-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 执行抓取
+        env:
+          # 全部来自仓库 Settings → Secrets and variables → Actions
+          LLM_KEY: ${{ secrets.LLM_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          HERMES_WEBHOOK_URL: ${{ secrets.HERMES_WEBHOOK_URL }}
+          HERMES_WEBHOOK_TOKEN: ${{ secrets.HERMES_WEBHOOK_TOKEN }}
+        run: |
+          python watch.py
+        # 单源失败不会让脚本非 0 退出（脚本内部已捕获），这里只在进程崩溃时红
+
+      - name: 提交状态与待重放队列
+        if: always()
+        run: |
+          git config user.name  "tax-watch-bot"
+          git config user.email "tax-watch-bot@users.noreply.github.com"
+          git add -A seen.json outbox 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "无变更，跳过提交"
+          else
+            git commit -m "chore: 更新抓取状态 [skip ci]"
+            git push
+          fi
+
+      - name: 汇总到 Job Summary
+        if: always()
+        run: python scripts/summary.py
+
