@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "event_id": "ff73fb0298eeddcc",
+  "source": "外汇局-政策法规",
+  "source_name": "外汇局-政策法规",
+  "type": "public",
+  "url": "https://www.safe.gov.cn/safe/2026/0805/27766.html",
+  "title": "现行有效外汇管理主要法规目录（截至2026年6月30日）​",
+  "published_at": "2026-06-30",
+  "fetched_at": "2026-10-27T15:59:38+00:00",
+  "meta": {},
+  "doc": {
+    "title_clean": "现行有效外汇管理主要法规目录（截至2026年6月30日）",
+    "doc_no": "",
+    "issuer": "国家外汇管理局",
+    "doc_type": "其他",
+    "signed_date": "",
+    "effective_date": "",
+    "expire_date": "",
+    "abolish_note": "",
+    "business_tags": [
+      "外汇",
+      "跨境资金"
+    ],
+    "summary": "汇总截至2026年6月30日现行有效的外汇管理主要法规目录，正文未列具体法规条款或政策变化。",
+    "key_changes": [],
+    "scenarios": [
+      "跨境收付",
+      "不适用"
+    ],
+    "affected": "从事跨境收付及外汇业务的纳税人、银行和机构",
+    "is_relevant": true,
+    "risk_level": "低",
+    "need_read_full": true
+  },
+  "attachments": [],
+  "text_excerpt": "联系我们\n|\n法律声明\n|\n网站地图\n|\n设为首页\n|\n加入收藏\n国家外汇管理局主办 版权所有 授权转载 最佳分辨率:1280*768\n网站标识码bm74000001\n京ICP备06017241号\n京公网安备11040102700061",
+  "llm_model": "deepseek-flash",
+  "llm_ok": true
+}
