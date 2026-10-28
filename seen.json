@@ -1,9 +1,15 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-10-28T01:36:10+00:00",
-   "last_run": "2026-10-28T01:36:10+00:00",
+   "last_ok": "2026-10-28T16:47:39+00:00",
+   "last_run": "2026-10-28T16:47:39+00:00",
    "urls": {
+    "https://www.safe.gov.cn/safe/2026/0617/27579.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T16:47:39+00:00",
+     "title": "中国人民银行 国家发展改革委 金融监管总局 中国证监会 国家外汇局 上海市人民政...",
+     "url": "https://www.safe.gov.cn/safe/2026/0617/27579.html"
+    },
     "https://www.safe.gov.cn/safe/2026/0731/27745.html": {
      "pushed": true,
      "seen_at": "2026-10-28T01:36:10+00:00",
@@ -31,9 +37,15 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-10-28T01:35:44+00:00",
-   "last_run": "2026-10-28T01:35:44+00:00",
+   "last_ok": "2026-10-28T16:47:15+00:00",
+   "last_run": "2026-10-28T16:47:15+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5248545/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T16:47:15+00:00",
+     "title": "国家税务总局关于开展2026年“便民办税春风行动”的意见",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5248545/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5248694/content.html": {
      "pushed": true,
      "seen_at": "2026-10-28T01:35:44+00:00",
@@ -61,14 +73,20 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-10-28T01:35:23+00:00",
-   "last_run": "2026-10-28T01:35:23+00:00",
+   "last_ok": "2026-10-28T16:46:49+00:00",
+   "last_run": "2026-10-28T16:46:49+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251854/content.html": {
      "pushed": true,
      "seen_at": "2026-10-28T01:35:23+00:00",
      "title": "国家税务总局关于公布失效废止的部分税务规范性文件目录的公告",
      "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251854/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251944/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T16:46:49+00:00",
+     "title": "国家税务总局关于《中华人民共和国政府和挪威王国政府对所得消除双重征税和防止逃避税的协定》及议定书生效执行的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251944/content.html"
     },
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5252176/content.html": {
      "pushed": true,
@@ -91,9 +109,15 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-10-28T01:35:33+00:00",
-   "last_run": "2026-10-28T01:35:33+00:00",
+   "last_ok": "2026-10-28T16:47:01+00:00",
+   "last_run": "2026-10-28T16:47:01+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5252024/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T16:47:01+00:00",
+     "title": "财政部税务总局关于明确非应税交易等增值税有关事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5252024/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5252027/content.html": {
      "pushed": true,
      "seen_at": "2026-10-28T01:35:33+00:00",
@@ -121,8 +145,8 @@
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-10-28T01:36:01+00:00",
-   "last_run": "2026-10-28T01:36:01+00:00",
+   "last_ok": "2026-10-28T16:47:24+00:00",
+   "last_run": "2026-10-28T16:47:24+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -130,6 +154,13 @@
      "skip": "irrelevant",
      "title": "《紧急采购管理暂行办法》印发",
      "url": "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm"
+    },
+    "http://jkw.mof.gov.cn/zhengcefabu/202609/t20260901_3996425.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-28T16:47:24+00:00",
+     "skip": "irrelevant",
+     "title": "《改善普通高中学校办学条件补助资金管理办法》修订印发",
+     "url": "http://jkw.mof.gov.cn/zhengcefabu/202609/t20260901_3996425.htm"
     },
     "http://jkw.mof.gov.cn/zhengcefabu/202610/t20261014_4002838.htm": {
      "pushed": false,
