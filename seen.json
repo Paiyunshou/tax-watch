@@ -1,9 +1,15 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-10-27T15:59:38+00:00",
-   "last_run": "2026-10-27T15:59:38+00:00",
+   "last_ok": "2026-10-28T01:36:10+00:00",
+   "last_run": "2026-10-28T01:36:10+00:00",
    "urls": {
+    "https://www.safe.gov.cn/safe/2026/0731/27745.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T01:36:10+00:00",
+     "title": "国家外汇管理局关于进一步完善国内外汇贷款外汇管理有关事项的通知",
+     "url": "https://www.safe.gov.cn/safe/2026/0731/27745.html"
+    },
     "https://www.safe.gov.cn/safe/2026/0805/27766.html": {
      "pushed": true,
      "seen_at": "2026-10-27T15:59:38+00:00",
@@ -25,9 +31,15 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-10-27T15:59:17+00:00",
-   "last_run": "2026-10-27T15:59:17+00:00",
+   "last_ok": "2026-10-28T01:35:44+00:00",
+   "last_run": "2026-10-28T01:35:44+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5248694/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T01:35:44+00:00",
+     "title": "国家税务总局国家金融监督管理总局关于进一步深化和规范“银税互动”工作的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5248694/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5250255/content.html": {
      "pushed": true,
      "seen_at": "2026-10-27T15:59:17+00:00",
@@ -49,9 +61,15 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-10-27T15:58:54+00:00",
-   "last_run": "2026-10-27T15:58:54+00:00",
+   "last_ok": "2026-10-28T01:35:23+00:00",
+   "last_run": "2026-10-28T01:35:23+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251854/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T01:35:23+00:00",
+     "title": "国家税务总局关于公布失效废止的部分税务规范性文件目录的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251854/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5252176/content.html": {
      "pushed": true,
      "seen_at": "2026-10-27T15:58:54+00:00",
@@ -73,9 +91,15 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-10-27T15:59:05+00:00",
-   "last_run": "2026-10-27T15:59:05+00:00",
+   "last_ok": "2026-10-28T01:35:33+00:00",
+   "last_run": "2026-10-28T01:35:33+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5252027/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-28T01:35:33+00:00",
+     "title": "财政部税务总局中国证监会关于规范转让上市公司限售股个人所得税政策的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5252027/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5252107/content.html": {
      "pushed": true,
      "seen_at": "2026-10-27T15:59:05+00:00",
@@ -97,8 +121,8 @@
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-10-27T15:59:32+00:00",
-   "last_run": "2026-10-27T15:59:32+00:00",
+   "last_ok": "2026-10-28T01:36:01+00:00",
+   "last_run": "2026-10-28T01:36:01+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -113,6 +137,12 @@
      "skip": "irrelevant",
      "title": "《城乡义务教育补助经费管理办法》修订印发",
      "url": "http://jkw.mof.gov.cn/zhengcefabu/202610/t20261014_4002838.htm"
+    },
+    "http://jrs.mof.gov.cn/zhengcefabu/phjr/202609/t20260911_3997257.htm": {
+     "pushed": true,
+     "seen_at": "2026-10-28T01:36:01+00:00",
+     "title": "《关于加快农业保险高质量发展的实施方案》印发",
+     "url": "http://jrs.mof.gov.cn/zhengcefabu/phjr/202609/t20260911_3997257.htm"
     },
     "http://jrs.mof.gov.cn/zhengcefabu/phjr/202609/t20260929_3998312.htm": {
      "pushed": true,
