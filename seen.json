@@ -1,9 +1,15 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-10-30T02:07:31+00:00",
-   "last_run": "2026-10-30T02:07:31+00:00",
+   "last_ok": "2026-10-30T16:48:57+00:00",
+   "last_run": "2026-10-30T16:48:57+00:00",
    "urls": {
+    "https://www.safe.gov.cn/safe/2025/1226/26960.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T16:48:57+00:00",
+     "title": "中国人民银行 国家外汇管理局关于跨国公司本外币一体化资金池业务有关事宜的通知",
+     "url": "https://www.safe.gov.cn/safe/2025/1226/26960.html"
+    },
     "https://www.safe.gov.cn/safe/2025/1226/26965.html": {
      "pushed": true,
      "seen_at": "2026-10-30T02:07:31+00:00",
@@ -55,9 +61,15 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-10-30T02:07:12+00:00",
-   "last_run": "2026-10-30T02:07:12+00:00",
+   "last_ok": "2026-10-30T16:48:35+00:00",
+   "last_run": "2026-10-30T16:48:35+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5245729/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T16:48:35+00:00",
+     "title": "国家税务总局办公厅关于明确2026年度申报纳税期限的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5245729/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5247612/content.html": {
      "pushed": true,
      "seen_at": "2026-10-30T02:07:12+00:00",
@@ -109,9 +121,15 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-10-30T02:06:45+00:00",
-   "last_run": "2026-10-30T02:06:45+00:00",
+   "last_ok": "2026-10-30T16:48:19+00:00",
+   "last_run": "2026-10-30T16:48:19+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251155/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T16:48:19+00:00",
+     "title": "国家税务总局关于企业重组业务所得税处理有关征管问题的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251155/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251175/content.html": {
      "pushed": true,
      "seen_at": "2026-10-30T02:06:45+00:00",
@@ -163,9 +181,15 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-10-30T02:06:58+00:00",
-   "last_run": "2026-10-30T02:06:58+00:00",
+   "last_ok": "2026-10-30T16:48:31+00:00",
+   "last_run": "2026-10-30T16:48:31+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251171/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T16:48:31+00:00",
+     "title": "财政部海关总署税务总局关于调整部分电池消费税政策的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251171/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251277/content.html": {
      "pushed": true,
      "seen_at": "2026-10-30T02:06:58+00:00",
@@ -217,8 +241,8 @@
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-10-30T02:07:20+00:00",
-   "last_run": "2026-10-30T02:07:20+00:00",
+   "last_ok": "2026-10-30T16:48:44+00:00",
+   "last_run": "2026-10-30T16:48:44+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -240,6 +264,12 @@
      "skip": "irrelevant",
      "title": "《城乡义务教育补助经费管理办法》修订印发",
      "url": "http://jkw.mof.gov.cn/zhengcefabu/202610/t20261014_4002838.htm"
+    },
+    "http://jrs.mof.gov.cn/zhengcefabu/phjr/202608/t20260820_3995853.htm": {
+     "pushed": true,
+     "seen_at": "2026-10-30T16:48:44+00:00",
+     "title": "财政部等三部门联合发文部署进一步做好财政金融协同促内需政策有关工作",
+     "url": "http://jrs.mof.gov.cn/zhengcefabu/phjr/202608/t20260820_3995853.htm"
     },
     "http://jrs.mof.gov.cn/zhengcefabu/phjr/202609/t20260911_3997257.htm": {
      "pushed": true,
