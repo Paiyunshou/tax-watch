@@ -1,9 +1,15 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-10-29T17:03:39+00:00",
-   "last_run": "2026-10-29T17:03:39+00:00",
+   "last_ok": "2026-10-30T02:07:31+00:00",
+   "last_run": "2026-10-30T02:07:31+00:00",
    "urls": {
+    "https://www.safe.gov.cn/safe/2025/1226/26965.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T02:07:31+00:00",
+     "title": "中国人民银行 国家外汇管理局关于境内企业境外上市资金管理有关问题的通知",
+     "url": "https://www.safe.gov.cn/safe/2025/1226/26965.html"
+    },
     "https://www.safe.gov.cn/safe/2026/0320/27266.html": {
      "pushed": true,
      "seen_at": "2026-10-29T17:03:39+00:00",
@@ -49,9 +55,15 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-10-29T17:03:21+00:00",
-   "last_run": "2026-10-29T17:03:21+00:00",
+   "last_ok": "2026-10-30T02:07:12+00:00",
+   "last_run": "2026-10-30T02:07:12+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5247612/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T02:07:12+00:00",
+     "title": "国家税务总局关于2025年度个人所得税综合所得汇算清缴预约办理时间的通告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5247612/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5248035/content.html": {
      "pushed": true,
      "seen_at": "2026-10-29T17:03:21+00:00",
@@ -97,9 +109,15 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-10-29T17:02:59+00:00",
-   "last_run": "2026-10-29T17:02:59+00:00",
+   "last_ok": "2026-10-30T02:06:45+00:00",
+   "last_run": "2026-10-30T02:06:45+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251175/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T02:06:45+00:00",
+     "title": "国家税务总局工业和信息化部关于发布《免征车辆购置税的设有固定装置的非运输专用作业车辆目录》（第二十二批）的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251175/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251338/content.html": {
      "pushed": true,
      "seen_at": "2026-10-29T17:02:59+00:00",
@@ -145,9 +163,15 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-10-29T17:03:13+00:00",
-   "last_run": "2026-10-29T17:03:13+00:00",
+   "last_ok": "2026-10-30T02:06:58+00:00",
+   "last_run": "2026-10-30T02:06:58+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251277/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-30T02:06:58+00:00",
+     "title": "财政部税务总局关于离岸信托个人所得税有关事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251277/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251406/content.html": {
      "pushed": true,
      "seen_at": "2026-10-29T17:03:13+00:00",
@@ -193,8 +217,8 @@
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-10-29T17:03:34+00:00",
-   "last_run": "2026-10-29T17:03:34+00:00",
+   "last_ok": "2026-10-30T02:07:20+00:00",
+   "last_run": "2026-10-30T02:07:20+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -240,6 +264,12 @@
      "seen_at": "2026-10-29T01:56:10+00:00",
      "title": "非应税交易等增值税有关事项明确",
      "url": "http://szs.mof.gov.cn/zhengcefabu/202608/t20260828_3996295.htm"
+    },
+    "http://yss.mof.gov.cn/zhengceguizhang/202608/t20260826_3996140.htm": {
+     "pushed": true,
+     "seen_at": "2026-10-30T02:07:20+00:00",
+     "title": "财政部制定实施《2027年政府收支分类科目》",
+     "url": "http://yss.mof.gov.cn/zhengceguizhang/202608/t20260826_3996140.htm"
     }
    }
   }
