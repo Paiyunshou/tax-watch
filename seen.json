@@ -1,9 +1,15 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-10-30T16:48:57+00:00",
-   "last_run": "2026-10-30T16:48:57+00:00",
+   "last_ok": "2026-10-31T01:46:13+00:00",
+   "last_run": "2026-10-31T01:46:13+00:00",
    "urls": {
+    "https://www.safe.gov.cn/safe/2025/1226/26955.html": {
+     "pushed": true,
+     "seen_at": "2026-10-31T01:46:13+00:00",
+     "title": "中国人民银行令〔2025〕第13号（银行间外汇市场管理规定）",
+     "url": "https://www.safe.gov.cn/safe/2025/1226/26955.html"
+    },
     "https://www.safe.gov.cn/safe/2025/1226/26960.html": {
      "pushed": true,
      "seen_at": "2026-10-30T16:48:57+00:00",
@@ -61,9 +67,15 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-10-30T16:48:35+00:00",
-   "last_run": "2026-10-30T16:48:35+00:00",
+   "last_ok": "2026-10-31T01:45:44+00:00",
+   "last_run": "2026-10-31T01:45:44+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5239407/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-31T01:45:44+00:00",
+     "title": "国家税务总局关于开展2025年“便民办税春风行动”的意见",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5239407/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5245729/content.html": {
      "pushed": true,
      "seen_at": "2026-10-30T16:48:35+00:00",
@@ -121,9 +133,15 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-10-30T16:48:19+00:00",
-   "last_run": "2026-10-30T16:48:19+00:00",
+   "last_ok": "2026-10-31T01:45:18+00:00",
+   "last_run": "2026-10-31T01:45:18+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5250347/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-31T01:45:18+00:00",
+     "title": "国家税务总局关于在成品油零售领域全面推广“交易即开票”有关事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5250347/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251155/content.html": {
      "pushed": true,
      "seen_at": "2026-10-30T16:48:19+00:00",
@@ -181,14 +199,20 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-10-30T16:48:31+00:00",
-   "last_run": "2026-10-30T16:48:31+00:00",
+   "last_ok": "2026-10-31T01:45:32+00:00",
+   "last_run": "2026-10-31T01:45:32+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251171/content.html": {
      "pushed": true,
      "seen_at": "2026-10-30T16:48:31+00:00",
      "title": "财政部海关总署税务总局关于调整部分电池消费税政策的公告",
      "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251171/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251255/content.html": {
+     "pushed": true,
+     "seen_at": "2026-10-31T01:45:32+00:00",
+     "title": "财政部税务总局生态环境部关于印发《征收挥发性有机物环境保护税试点实施办法》的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251255/content.html"
     },
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251277/content.html": {
      "pushed": true,
@@ -241,8 +265,8 @@
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-10-30T16:48:44+00:00",
-   "last_run": "2026-10-30T16:48:44+00:00",
+   "last_ok": "2026-10-31T01:46:00+00:00",
+   "last_run": "2026-10-31T01:46:00+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -282,6 +306,12 @@
      "seen_at": "2026-10-27T01:36:38+00:00",
      "title": "财政部 中国人民银行 金融监管总局关于实施居民购房贷款贴息政策的通知",
      "url": "http://jrs.mof.gov.cn/zhengcefabu/phjr/202609/t20260929_3998312.htm"
+    },
+    "http://kjs.mof.gov.cn/zhengcefabu/202608/t20260805_3994927.htm": {
+     "pushed": true,
+     "seen_at": "2026-10-31T01:46:00+00:00",
+     "title": "《企业会计准则第30号——财务报表列报》修订印发",
+     "url": "http://kjs.mof.gov.cn/zhengcefabu/202608/t20260805_3994927.htm"
     },
     "http://kjs.mof.gov.cn/zhengcefabu/202608/t20260827_3996207.htm": {
      "pushed": true,
