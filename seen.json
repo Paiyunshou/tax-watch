@@ -1,9 +1,16 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-10-31T08:03:24+00:00",
-   "last_run": "2026-10-31T08:03:24+00:00",
+   "last_ok": "2026-10-31T15:54:42+00:00",
+   "last_run": "2026-10-31T15:54:42+00:00",
    "urls": {
+    "https://www.safe.gov.cn/safe/2024/1227/25581.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:54:42+00:00",
+     "skip": "stale",
+     "title": "国家外汇管理局关于印发《银行外汇业务尽职免责规定（试行）》的通知",
+     "url": "https://www.safe.gov.cn/safe/2024/1227/25581.html"
+    },
     "https://www.safe.gov.cn/safe/2025/0110/25637.html": {
      "pushed": false,
      "seen_at": "2026-10-31T08:03:24+00:00",
@@ -123,9 +130,23 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-10-31T08:01:22+00:00",
-   "last_run": "2026-10-31T08:01:22+00:00",
+   "last_ok": "2026-10-31T15:53:10+00:00",
+   "last_run": "2026-10-31T15:53:10+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233098/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:53:06+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于选拔第十批全国税务领军人才学员的通告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233098/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233448/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:53:10+00:00",
+     "skip": "stale",
+     "title": "国家税务总局国家广播电视总局关于联合举办第六届全国税收公益广告作品征集暨展播活动的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233448/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233779/content.html": {
      "pushed": false,
      "seen_at": "2026-10-31T08:01:22+00:00",
@@ -245,9 +266,44 @@
    }
   },
   "税务总局-意见征集": {
-   "last_ok": "2026-10-31T07:57:30+00:00",
-   "last_run": "2026-10-31T07:57:30+00:00",
+   "last_ok": "2026-10-31T15:50:43+00:00",
+   "last_run": "2026-10-31T15:50:43+00:00",
    "urls": {
+    "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5237598/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:50:43+00:00",
+     "skip": "stale",
+     "title": "《个人所得税综合所得汇算清缴管理办法（征求意见稿）》公开征求意见",
+     "url": "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5237598/content.html"
+    },
+    "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5239263/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:50:33+00:00",
+     "skip": "stale",
+     "title": "《中华人民共和国税收征收管理法（修订征求意见稿）》公开征求意见",
+     "url": "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5239263/content.html"
+    },
+    "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5242227/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:50:25+00:00",
+     "skip": "stale",
+     "title": "《中华人民共和国增值税法实施条例（征求意见稿）》公开征求意见",
+     "url": "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5242227/content.html"
+    },
+    "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5243174/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:50:21+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于《欠税公告办法（征求意见稿）》公开征求意见的通知",
+     "url": "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5243174/content.html"
+    },
+    "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5243363/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:50:19+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于《税务人员税收业务违法行为处分规定（征求意见稿）》公开征求意见的通知",
+     "url": "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5243363/content.html"
+    },
     "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5244688/content.html": {
      "pushed": false,
      "seen_at": "2026-10-31T07:57:30+00:00",
@@ -285,9 +341,65 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-10-31T07:59:20+00:00",
-   "last_run": "2026-10-31T07:59:20+00:00",
+   "last_ok": "2026-10-31T15:52:08+00:00",
+   "last_run": "2026-10-31T15:52:08+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5243285/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:08+00:00",
+     "skip": "stale",
+     "title": "国家税务总局工业和信息化部关于发布《免征车辆购置税的设有固定装置的非运输专用作业车辆目录》（第十九批）的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5243285/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5243496/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:00+00:00",
+     "skip": "stale",
+     "title": "国家税务总局工业和信息化部国家互联网信息办公室关于规范互联网平台企业涉税信息报送有关行政处罚事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5243496/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5244743/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:55+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于黄金有关税收征管事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5244743/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5245432/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:47+00:00",
+     "skip": "stale",
+     "title": "国家税务总局最高人民法院关于企业破产程序中若干税费征管事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5245432/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246512/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:42+00:00",
+     "skip": "stale",
+     "title": "国家税务总局工业和信息化部关于发布《免征车辆购置税的设有固定装置的非运输专用作业车辆目录》（第二十批）的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246512/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246533/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:37+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于发布《涉税专业服务信用评价管理办法》的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246533/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246538/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:34+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于增值税一般纳税人登记管理有关事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246538/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246543/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:28+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于土地增值税若干征管口径的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5246543/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5247423/content.html": {
      "pushed": false,
      "seen_at": "2026-10-31T07:59:14+00:00",
@@ -407,9 +519,65 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-10-31T08:00:31+00:00",
-   "last_run": "2026-10-31T08:00:31+00:00",
+   "last_ok": "2026-10-31T15:52:57+00:00",
+   "last_run": "2026-10-31T15:52:57+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247785/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:57+00:00",
+     "skip": "stale",
+     "title": "财政部海关总署税务总局关于“十五五”期间进口科学研究、科技开发和教学用品免税清单的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247785/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247788/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:52+00:00",
+     "skip": "stale",
+     "title": "财政部中央宣传部科技部工业和信息化部海关总署税务总局广电总局关于“十五五”期间支持科普事业发展进口税收优惠政策管理办法的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247788/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247791/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:47+00:00",
+     "skip": "stale",
+     "title": "财政部海关总署税务总局关于“十五五”期间国家综合性消防救援队伍进口税收优惠政策的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247791/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247799/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:42+00:00",
+     "skip": "stale",
+     "title": "财政部海关总署税务总局关于“十五五”期间能源资源勘探开发利用进口税收优惠政策的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247799/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247802/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:32+00:00",
+     "skip": "stale",
+     "title": "财政部海关总署税务总局关于“十五五”期间种子种源进口税收优惠政策的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247802/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247807/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:38+00:00",
+     "skip": "stale",
+     "title": "财政部国家发展改革委工业和信息化部海关总署税务总局国家能源局关于“十五五”期间能源资源勘探开发利用进口税收优惠政策管理办法的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247807/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5248023/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:24+00:00",
+     "skip": "stale",
+     "title": "财政部海关总署税务总局关于中国国际服务贸易交易会展期内销售的进口展品税收优惠政策的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5248023/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5248026/content.html": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:52:19+00:00",
+     "skip": "stale",
+     "title": "财政部海关总署税务总局关于“十五五”期间中西部地区国际性展会展期内销售的进口展品税收优惠政策的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5248026/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5248029/content.html": {
      "pushed": false,
      "seen_at": "2026-10-31T08:00:31+00:00",
@@ -528,14 +696,41 @@
    }
   },
   "财政部-意见征集": {
-   "last_ok": "2026-10-31T07:58:32+00:00",
-   "last_run": "2026-10-31T07:58:32+00:00",
+   "last_ok": "2026-10-31T15:51:10+00:00",
+   "last_run": "2026-10-31T15:51:10+00:00",
    "urls": {
     "http://gks.mof.gov.cn/gongzuodongtai/202610/t20261027_4003590.htm": {
      "pushed": true,
      "seen_at": "2026-10-31T07:57:46+00:00",
      "title": "关于就《政府采购评审专家管理办法(修订征求意见稿)》向社会公开征求意...",
      "url": "http://gks.mof.gov.cn/gongzuodongtai/202610/t20261027_4003590.htm"
+    },
+    "http://kjs.mof.gov.cn/gongzuotongzhi/202608/t20260803_3994682.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:10+00:00",
+     "skip": "stale",
+     "title": "关于征求《政府会计准则制度解释第8号（征求意见稿）》意见的函",
+     "url": "http://kjs.mof.gov.cn/gongzuotongzhi/202608/t20260803_3994682.htm"
+    },
+    "http://kjs.mof.gov.cn/gongzuotongzhi/202609/t20260915_3997440.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:50:59+00:00",
+     "skip": "stale",
+     "title": "关于征求《企业会计准则解释第21号（征求意见稿）》意见的函",
+     "url": "http://kjs.mof.gov.cn/gongzuotongzhi/202609/t20260915_3997440.htm"
+    },
+    "http://kjs.mof.gov.cn/gongzuotongzhi/202609/t20260915_3997441.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:50:55+00:00",
+     "skip": "stale",
+     "title": "关于征求《企业会计准则解释第22号（征求意见稿）》意见的函",
+     "url": "http://kjs.mof.gov.cn/gongzuotongzhi/202609/t20260915_3997441.htm"
+    },
+    "http://kjs.mof.gov.cn/gongzuotongzhi/202609/t20260921_3997874.htm": {
+     "pushed": true,
+     "seen_at": "2026-10-31T15:50:51+00:00",
+     "title": "关于征求《财政部关于加快推进会计数智化工作的指导意见（征求意见稿）...",
+     "url": "http://kjs.mof.gov.cn/gongzuotongzhi/202609/t20260921_3997874.htm"
     },
     "http://kjs.mof.gov.cn/gongzuotongzhi/202609/t20260929_3998329.htm": {
      "pushed": true,
@@ -560,12 +755,19 @@
      "seen_at": "2026-10-31T07:58:02+00:00",
      "title": "关于就国际会计准则理事会发布的金融工具准则实施后审议意见征询稿公开...",
      "url": "http://kjs.mof.gov.cn/gongzuotongzhi/202610/t20261012_4002610.htm"
+    },
+    "http://szs.mof.gov.cn/gongzuodongtai/202608/t20260828_3996244.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:51:06+00:00",
+     "skip": "stale",
+     "title": "《中华人民共和国地方附加税法（征求意见稿）》公开征求意见",
+     "url": "http://szs.mof.gov.cn/gongzuodongtai/202608/t20260828_3996244.htm"
     }
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-10-31T08:02:36+00:00",
-   "last_run": "2026-10-31T08:02:36+00:00",
+   "last_ok": "2026-10-31T15:54:34+00:00",
+   "last_run": "2026-10-31T15:54:34+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -573,6 +775,41 @@
      "skip": "irrelevant",
      "title": "《紧急采购管理暂行办法》印发",
      "url": "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm"
+    },
+    "http://gss.mof.gov.cn/gzdt/zhengcefabu/202603/t20260303_3984570.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:54:34+00:00",
+     "skip": "stale",
+     "title": "“十五五”期间相关展会展期内销售的进口展品税收优惠政策明确",
+     "url": "http://gss.mof.gov.cn/gzdt/zhengcefabu/202603/t20260303_3984570.htm"
+    },
+    "http://gss.mof.gov.cn/gzdt/zhengcefabu/202603/t20260303_3984571.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:54:26+00:00",
+     "skip": "stale",
+     "title": "中国国际服务贸易交易会展期内销售的进口展品税收优惠政策明确",
+     "url": "http://gss.mof.gov.cn/gzdt/zhengcefabu/202603/t20260303_3984571.htm"
+    },
+    "http://gss.mof.gov.cn/gzdt/zhengcefabu/202603/t20260326_3986134.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:54:15+00:00",
+     "skip": "stale",
+     "title": "国务院关税税则委员会关于对原产于刚果（布）的部分进口货物实施共同发展经济伙伴关系协定早期收获安排协定税率的公告",
+     "url": "http://gss.mof.gov.cn/gzdt/zhengcefabu/202603/t20260326_3986134.htm"
+    },
+    "http://gss.mof.gov.cn/gzdt/zhengcefabu/202604/t20260428_3988616.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:53:22+00:00",
+     "skip": "stale",
+     "title": "国务院关税税则委员会关于对非洲建交国实施零关税举措的公告",
+     "url": "http://gss.mof.gov.cn/gzdt/zhengcefabu/202604/t20260428_3988616.htm"
+    },
+    "http://jjs.mof.gov.cn/tongzhigonggao/202604/t20260409_3987253.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:53:55+00:00",
+     "skip": "stale",
+     "title": "财政部、交通运输部支持新一轮国家综合货运枢纽补链强链提升行动",
+     "url": "http://jjs.mof.gov.cn/tongzhigonggao/202604/t20260409_3987253.htm"
     },
     "http://jjs.mof.gov.cn/zhengcefagui/202606/t20260604_3991164.htm": {
      "pushed": false,
@@ -646,6 +883,13 @@
      "title": "《会计师事务所职业责任保险实施办法》修订印发",
      "url": "http://kjs.mof.gov.cn/zhengcefabu/202608/t20260827_3996207.htm"
     },
+    "http://sbs.mof.gov.cn/zhengcefabu/202604/t20260421_3988007.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:53:29+00:00",
+     "skip": "stale",
+     "title": "财政部、退役军人事务部制定印发《中央专项彩票公益金支持光荣院能力提升项目资金管理办法》",
+     "url": "http://sbs.mof.gov.cn/zhengcefabu/202604/t20260421_3988007.htm"
+    },
     "http://szs.mof.gov.cn/zhengcefabu/202607/t20260703_3992823.htm": {
      "pushed": true,
      "seen_at": "2026-10-31T08:02:07+00:00",
@@ -684,6 +928,13 @@
      "seen_at": "2026-10-30T02:07:20+00:00",
      "title": "财政部制定实施《2027年政府收支分类科目》",
      "url": "http://yss.mof.gov.cn/zhengceguizhang/202608/t20260826_3996140.htm"
+    },
+    "http://zwgls.mof.gov.cn/zcgz/202604/t20260424_3988356.htm": {
+     "pushed": false,
+     "seen_at": "2026-10-31T15:53:36+00:00",
+     "skip": "stale",
+     "title": "关于扩大地方政府专项债券项目“自审自发”试点范围的通知",
+     "url": "http://zwgls.mof.gov.cn/zcgz/202604/t20260424_3988356.htm"
     }
    }
   }
