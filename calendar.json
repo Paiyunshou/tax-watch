@@ -1,0 +1,30 @@
+{
+ "items": {
+  "378c8a0a78a63a1d": {
+   "added_at": "2026-10-31T08:02:07+00:00",
+   "doc_no": "财政部 税务总局 工业和信息化部公告2026年第19号",
+   "effective_date": "2027-01-01",
+   "event_id": "378c8a0a78a63a1d",
+   "issuer": "财政部、税务总局、工业和信息化部",
+   "risk_level": "高",
+   "signed_date": "2026-07-02",
+   "source": "财政部-政策发布",
+   "title": "财政部 税务总局 工业和信息化部关于调整节能汽车、新能源汽车车船税优惠政策的公告",
+   "url": "http://szs.mof.gov.cn/zhengcefabu/202607/t20260703_3992823.htm"
+  },
+  "a852c4f3191a32f7": {
+   "added_at": "2026-10-31T07:59:31+00:00",
+   "doc_no": "财政部 税务总局 工业和信息化部公告2026年第19号",
+   "effective_date": "2027-01-01",
+   "event_id": "a852c4f3191a32f7",
+   "issuer": "财政部、国家税务总局、工业和信息化部",
+   "risk_level": "高",
+   "signed_date": "2026-07-02",
+   "source": "税务总局-财税文件",
+   "title": "财政部 税务总局 工业和信息化部关于调整节能汽车、新能源汽车车船税优惠政策的公告",
+   "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5250801/content.html"
+  }
+ },
+ "updated_at": "2026-10-31T08:03:24+00:00",
+ "version": 1
+}
