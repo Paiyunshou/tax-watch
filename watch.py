@@ -34,7 +34,7 @@ import random
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlsplit, urlunsplit
@@ -88,6 +88,32 @@ def guess_date(text: str) -> str:
     if not (1 <= mo <= 12 and 1 <= d <= 31):
         return ""
     return f"{y:04d}-{mo:02d}-{d:02d}"
+
+
+def parse_iso_date(value: str | None) -> date | None:
+    """把 'YYYY-MM-DD' / 'YYYY年M月D日' / 毫秒时间戳 之类尽量解析成 date。"""
+    s = (value or "").strip()
+    if not s:
+        return None
+    if s.isdigit() and len(s) in (12, 13):      # 毫秒时间戳
+        try:
+            return datetime.fromtimestamp(int(s) / 1000, tz=timezone.utc).astimezone().date()
+        except Exception:  # noqa: BLE001
+            return None
+    g = guess_date(s)
+    if not g:
+        return None
+    try:
+        y, m, d = (int(x) for x in g.split("-"))
+        return date(y, m, d)
+    except ValueError:
+        return None
+
+
+def days_until(target: date | None, today: date | None = None) -> int | None:
+    if target is None:
+        return None
+    return (target - (today or date.today())).days
 
 
 class Fetcher:
@@ -230,6 +256,11 @@ def items_from_html(src: dict, fetcher: Fetcher) -> list[dict]:
                 date = guess_date(d_el.get_text(" ", strip=True))
         if not date:
             date = guess_date(node.get_text(" ", strip=True))
+        if not date:                       # 有些站用 13 位毫秒时间戳代替日期
+            m = re.search(r"\b(1\d{12})\b", node.get_text(" ", strip=True))
+            if m:
+                parsed = parse_iso_date(m.group(1))
+                date = parsed.isoformat() if parsed else ""
         full = absolutize(href, src)
         out.setdefault(norm_url(full), {
             "title": title, "url": full, "date": date, "meta": {},
@@ -342,6 +373,7 @@ EMPTY_DOC = {
     "signed_date": "", "effective_date": "", "expire_date": "", "abolish_note": "",
     "business_tags": [], "summary": "", "key_changes": [], "scenarios": [],
     "affected": "", "is_relevant": True, "risk_level": "低", "need_read_full": False,
+    "stage": "", "comment_deadline": "",
 }
 
 
@@ -473,6 +505,34 @@ def save_seen(path: Path, seen: dict) -> None:
                     encoding="utf-8")
 
 
+# ------------------------------------------------------- 生效日历（将来才实施的）
+def load_calendar(path: Path) -> dict:
+    """calendar.json：所有「还未生效」的条目，供 Hermes 端做倒计时提醒。"""
+    if not path.exists():
+        return {"version": 1, "items": {}}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data.setdefault("items", {})
+        return data
+    except Exception:  # noqa: BLE001
+        log.warning("calendar.json 损坏，重新开始")
+        return {"version": 1, "items": {}}
+
+
+def save_calendar(path: Path, cal: dict, today: date | None = None) -> None:
+    today = today or date.today()
+    items = cal.get("items") or {}
+    # 生效日已过去 7 天以上的条目清掉，文件不会无限长
+    for eid in list(items):
+        eff = parse_iso_date(items[eid].get("effective_date", ""))
+        if eff is None or (eff - today).days < -7:
+            items.pop(eid, None)
+    cal["items"] = items
+    cal["updated_at"] = now_local_iso()
+    path.write_text(json.dumps(cal, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
+                    encoding="utf-8")
+
+
 # ------------------------------------------------------------------------ 主流程
 def keyword_ok(title: str, src: dict) -> bool:
     kws = src.get("keywords") or []
@@ -485,7 +545,8 @@ def keyword_ok(title: str, src: dict) -> bool:
 
 
 def process_source(src: dict, seen: dict, defaults: dict, args: argparse.Namespace,
-                   fetcher: Fetcher, prompt: str, outbox: Path) -> tuple[int, int]:
+                   fetcher: Fetcher, prompt: str, outbox: Path,
+                   calendar: dict | None = None) -> tuple[int, int]:
     name = src.get("name") or "未命名源"
 
     if not src.get("enabled", True):
@@ -512,9 +573,16 @@ def process_source(src: dict, seen: dict, defaults: dict, args: argparse.Namespa
     known: dict = bucket.setdefault("urls", {})
 
     fresh = [it for it in items if norm_url(it["url"]) not in known and keyword_ok(it["title"], src)]
-    limit = args.limit or int(src.get("max_new_per_source", defaults.get("max_new_per_source", 15)))
+    # 关键：按发布日期从新到旧挑，绝不按列表顺序（列表顺序常常是栏目顺序，会先吐最旧的积压）
+    fresh.sort(key=lambda it: (it.get("date") or ""), reverse=True)
+    limit = args.limit or int(src.get("max_new_per_source", defaults.get("max_new_per_source", 8)))
     fresh = fresh[:limit]
-    log.info("  新增待处理 %d 条（本次上限 %d）", len(fresh), limit)
+    log.info("  新增待处理 %d 条（本次上限 %d，已按日期倒序）", len(fresh), limit)
+
+    max_age = int(src.get("max_age_days") or defaults.get("max_age_days", 30))
+    draft_age = int(src.get("draft_max_age_days") or defaults.get("draft_max_age_days", 45))
+    forward = int(defaults.get("forward_window_days", 120))
+    today = date.today()
 
     pushed = 0
     for it in fresh:
@@ -534,6 +602,29 @@ def process_source(src: dict, seen: dict, defaults: dict, args: argparse.Namespa
             doc, model, llm_ok = extract_with_llm(prompt, it, text, src)
         # 接口自带的文号/成文日期/效力等级回填空字段（比 LLM 更准）
         doc = merge_meta_into_doc(doc, it.get("meta") or {})
+
+        # ---- 判定「值不值得推」：新出台 / 即将生效 / 正在征求意见，其余一律静默归档
+        stage = (src.get("stage") or "").strip() or (doc.get("stage") or "").strip() or ""
+        if not stage:
+            stage = "征求意见中" if "征求意见" in f"{it['title']}{doc.get('title_clean') or ''}" else "已发布"
+        signed = parse_iso_date(doc.get("signed_date")) or parse_iso_date(it.get("date"))
+        eff = parse_iso_date(doc.get("effective_date"))
+        pub_age = (today - signed).days if signed else None
+        eff_in = days_until(eff, today)
+        effective_soon = eff_in is not None and 0 <= eff_in <= forward
+        fresh_news = pub_age is not None and pub_age <= max_age
+        fresh_draft = stage == "征求意见中" and (pub_age is None or pub_age <= draft_age)
+
+        if not (fresh_news or fresh_draft or effective_soon):
+            log.info("    已过时效（成文 %s，%s 天前，生效 %s），静默归档不推送",
+                     doc.get("signed_date") or it.get("date") or "未知",
+                     pub_age if pub_age is not None else "?", doc.get("effective_date") or "-")
+            known[norm_url(it["url"])] = {
+                "url": it["url"], "title": it["title"],
+                "seen_at": now_local_iso(), "pushed": False, "skip": "stale",
+            }
+            continue
+        doc["stage"] = stage
 
         if not doc.get("is_relevant", True):
             log.info("    LLM 判定与本业务无关，标记已读不推送")
@@ -559,6 +650,8 @@ def process_source(src: dict, seen: dict, defaults: dict, args: argparse.Namespa
             "text_excerpt": text[:3000],
             "llm_model": model,
             "llm_ok": llm_ok,
+            "stage": stage,
+            "effective_date": doc.get("effective_date") or "",
         }
 
         ok = push_webhook(event, outbox, args.dry_run)
@@ -579,6 +672,20 @@ def process_source(src: dict, seen: dict, defaults: dict, args: argparse.Namespa
                     "url": it["url"], "title": it["title"],
                     "seen_at": now_local_iso(), "pushed": True,
                 }
+                # 还没生效的，记进「生效日历」，Hermes 端据此做倒计时提醒
+                if calendar is not None and eff is not None and eff >= today:
+                    calendar.setdefault("items", {})[event["event_id"]] = {
+                        "event_id": event["event_id"],
+                        "title": doc.get("title_clean") or it["title"],
+                        "doc_no": doc.get("doc_no") or "",
+                        "issuer": doc.get("issuer") or "",
+                        "signed_date": doc.get("signed_date") or "",
+                        "effective_date": doc["effective_date"],
+                        "source": name,
+                        "url": it["url"],
+                        "risk_level": doc.get("risk_level") or "低",
+                        "added_at": now_local_iso(),
+                    }
         else:
             log.warning("    推送失败，不写入 seen，下轮重试")
 
@@ -593,6 +700,7 @@ def main() -> int:
     ap.add_argument("--seen", default=str(ROOT / "seen.json"))
     ap.add_argument("--prompt", default=str(ROOT / "prompt.txt"))
     ap.add_argument("--outbox", default=str(ROOT / "outbox"))
+    ap.add_argument("--calendar", default=str(ROOT / "calendar.json"))
     ap.add_argument("--source", help="只跑指定名称的源")
     ap.add_argument("--limit", type=int, help="覆盖单源新增上限")
     ap.add_argument("--dry-run", action="store_true", help="只抓取解析，不调 LLM/不推送/不写状态")
@@ -622,6 +730,8 @@ def main() -> int:
     seen_path = Path(args.seen)
     seen = load_seen(seen_path)
     outbox = Path(args.outbox)
+    cal_path = Path(args.calendar)
+    calendar = load_calendar(cal_path)
     prompt = load_prompt(Path(args.prompt))
 
     verify = bool(defaults.get("verify_ssl", True))
@@ -635,7 +745,8 @@ def main() -> int:
             verify_ssl=bool(src.get("verify_ssl", verify)),
         )
         try:
-            new_n, pushed_n = process_source(src, seen, defaults, args, fetcher, prompt, outbox)
+            new_n, pushed_n = process_source(src, seen, defaults, args, fetcher, prompt, outbox,
+                                             calendar)
             total_new += new_n
             total_pushed += pushed_n
         except Exception as exc:  # noqa: BLE001
@@ -644,6 +755,7 @@ def main() -> int:
 
     if not args.dry_run:
         save_seen(seen_path, seen)
+        save_calendar(cal_path, calendar)
 
     log.info("=" * 56)
     log.info("完成：新增 %d 条，推送 %d 条%s", total_new, total_pushed,

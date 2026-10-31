@@ -215,48 +215,108 @@ def send_card(card: dict, dry_run: bool = False) -> bool:
 
 
 RISK_ORDER = {"高": 0, "中": 1, "低": 2}
+STAGE_DRAFT = "征求意见中"
 
 
-def build_digest_card(events: list[dict], date_label: str = "", max_items: int = 8) -> dict:
-    """把多条公告合成一张日报卡片，按风险高→低排序。"""
-    evs = sorted(events, key=lambda e: (
-        RISK_ORDER.get(((e.get("doc") or {}).get("risk_level") or "低"), 3),
-        str(e.get("published_at") or ""),
-    ))
-    top_risk = ((evs[0].get("doc") or {}).get("risk_level") or "低") if evs else "低"
+def _stage(event: dict) -> str:
+    doc = event.get("doc") or {}
+    return (doc.get("stage") or event.get("stage") or "").strip()
+
+
+def _item_block(i: int, e: dict) -> dict:
+    doc = e.get("doc") or {}
+    head = _h(doc.get("title_clean") or e.get("title") or "")
+    lines = [f"**{i}. [{head}]({e.get('url')})**"]
+    meta = []
+    if doc.get("doc_no"):
+        meta.append(_h(doc["doc_no"]))
+    if e.get("source"):
+        meta.append(_h(e["source"]))
+    if doc.get("signed_date"):
+        meta.append(f"成文 {doc['signed_date']}")
+    if doc.get("effective_date"):
+        meta.append(f"生效 {doc['effective_date']}")
+    meta.append(f"风险 {doc.get('risk_level') or '低'}")
+    lines.append("　·　".join(meta))
+    if doc.get("summary"):
+        lines.append(_h(doc["summary"])[:130])
+    return {"tag": "div", "text": {"tag": "lark_md", "content": "\n".join(lines)}}
+
+
+def _section_title(text: str) -> dict:
+    return {"tag": "div", "text": {"tag": "lark_md", "content": f"**【{text}】**"}}
+
+
+def build_digest_card(events: list[dict], date_label: str = "", max_items: int = 8,
+                      upcoming: list[dict] | None = None) -> dict:
+    """日报卡：① 新政速览 ② 即将生效 ③ 征求意见中。"""
+    events = events or []
+    drafts = [e for e in events if _stage(e) == STAGE_DRAFT]
+    news = [e for e in events if _stage(e) != STAGE_DRAFT]
+    # 先按日期从新到旧，再按风险稳定排序（高风险在前）
+    news.sort(key=lambda e: str((e.get("doc") or {}).get("signed_date")
+                                or e.get("published_at") or ""), reverse=True)
+    news.sort(key=lambda e: RISK_ORDER.get(((e.get("doc") or {}).get("risk_level") or "低"), 3))
 
     elements: list[dict] = []
-    for i, e in enumerate(evs[:max_items], 1):
-        doc = e.get("doc") or {}
-        head = _h(doc.get("title_clean") or e.get("title") or "")
-        lines = [f"**{i}. [{head}]({e.get('url')})**"]
-        meta = []
-        if doc.get("doc_no"):
-            meta.append(_h(doc["doc_no"]))
-        if e.get("source"):
-            meta.append(_h(e["source"]))
-        if doc.get("effective_date"):
-            meta.append(f"生效 {doc['effective_date']}")
-        meta.append(f"风险 {doc.get('risk_level') or '低'}")
-        lines.append("　·　".join(meta))
-        if doc.get("summary"):
-            lines.append(_h(doc["summary"])[:130])
-        elements.append({"tag": "div", "text": {"tag": "lark_md", "content": "\n".join(lines)}})
-        if i < min(len(evs), max_items):
-            elements.append({"tag": "hr"})
 
-    if len(evs) > max_items:
-        elements.append({"tag": "note", "elements": [
-            {"tag": "plain_text", "content": f"另有 {len(evs) - max_items} 条未展示，可到仓库 outbox 查看"}]})
+    if news:
+        elements.append(_section_title(f"🆕 新政速览（{len(news)} 条）"))
+        for i, e in enumerate(news[:max_items], 1):
+            if i > 1:
+                elements.append({"tag": "hr"})
+            elements.append(_item_block(i, e))
+        if len(news) > max_items:
+            elements.append({"tag": "note", "elements": [{
+                "tag": "plain_text",
+                "content": f"另有 {len(news) - max_items} 条未展开，可到仓库 outbox 查看"}]})
+
+    if upcoming:
+        if elements:
+            elements.append({"tag": "hr"})
+        elements.append(_section_title(f"⏰ 即将生效（{len(upcoming)} 条）"))
+        lines = []
+        for it in upcoming:
+            left = int(it.get("days_left") or 0)
+            when = "**今天生效**" if left == 0 else f"**{left} 天后**"
+            no = f"{_h(it.get('doc_no'))}　" if it.get("doc_no") else ""
+            lines.append(f"• {when}（{it.get('effective_date')}）　{no}"
+                         f"[{_h(it.get('title'))[:46]}]({it.get('url')})")
+        elements.append({"tag": "div", "text": {"tag": "lark_md", "content": "\n".join(lines)}})
+
+    if drafts:
+        if elements:
+            elements.append({"tag": "hr"})
+        elements.append(_section_title(f"📝 征求意见中（{len(drafts)} 条，草案）"))
+        lines = []
+        for e in drafts[:max_items]:
+            doc = e.get("doc") or {}
+            tail = []
+            if doc.get("comment_deadline"):
+                tail.append(f"截止 {doc['comment_deadline']}")
+            if doc.get("effective_date"):
+                tail.append(f"拟 {doc['effective_date']} 施行")
+            suffix = ("　" + "／".join(tail)) if tail else ""
+            lines.append(f"• [{_h(doc.get('title_clean') or e.get('title'))[:50]}]({e.get('url')}){suffix}")
+        elements.append({"tag": "div", "text": {"tag": "lark_md", "content": "\n".join(lines)}})
+        elements.append({"tag": "note", "elements": [{
+            "tag": "plain_text", "content": "草案尚未定稿，可按页面指引反馈意见——这类稿子通常 1-3 个月内落地"}]})
+
+    if not elements:
+        elements.append({"tag": "div", "text": {"tag": "lark_md", "content": "今天没有值得推送的政策变化。"}})
+
+    risks = [((e.get("doc") or {}).get("risk_level") or "低") for e in news]
+    template = "red" if "高" in risks else ("orange" if upcoming else "blue")
+    total = len(news) + len(upcoming or []) + len(drafts)
     elements.append({"tag": "note", "elements": [{
         "tag": "plain_text",
-        "content": f"共 {len(evs)} 条 · 来源：税务总局 / 财政部 / 外汇局 · 未写入思源，需要归档请手动处理",
+        "content": f"共 {total} 条 · 来源：税务总局 / 财政部 / 外汇局　·　未写入思源，需要归档请手动处理",
     }]})
 
     return {
         "config": {"wide_screen_mode": True},
         "header": {
-            "template": RISK_COLOR.get(top_risk, "blue"),
+            "template": template,
             "title": {"tag": "plain_text", "content": f"财税政策日报 · {date_label}"},
         },
         "elements": elements,
@@ -267,8 +327,9 @@ def build_and_send(event: dict, dry_run: bool = False) -> bool:
     return send_card(build_card(event), dry_run=dry_run)
 
 
-def send_digest(events: list[dict], date_label: str = "", dry_run: bool = False) -> bool:
-    return send_card(build_digest_card(events, date_label), dry_run=dry_run)
+def send_digest(events: list[dict], date_label: str = "", dry_run: bool = False,
+                upcoming: list[dict] | None = None) -> bool:
+    return send_card(build_digest_card(events, date_label, upcoming=upcoming), dry_run=dry_run)
 
 
 if __name__ == "__main__":

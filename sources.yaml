@@ -32,11 +32,41 @@
 
 defaults:
   verify_ssl: true
-  max_new_per_source: 1       # 单个源每次最多处理多少条新增（首跑限 1，稳定后可调到 10）
-  request_delay: [1.5, 4.0]   # 每个请求之间的随机延时（秒），反爬用
+  max_new_per_source: 8        # 单源每次最多处理多少条新增（按日期倒序取最新的那几条）
+  max_age_days: 30             # 成文日期超过这么多天的，除非「即将生效」否则静默归档不推送
+  draft_max_age_days: 45       # 征求意见稿的时效更宽（征集期本身就有 1 个月）
+  forward_window_days: 120     # 生效日在未来这么多天内的，算「即将实施」，一律推送
+  request_delay: [1.5, 4.0]    # 每个请求之间的随机延时（秒），反爬用
   timeout: 30
 
 sources:
+
+  # ------------------------------------------------------------ 征求意见（草案）
+  # 「即将出台」的最强信号：还在征求意见的稿子，实施日期往往就在征求意见结束后不久。
+  - name: 税务总局-意见征集
+    type: public
+    enabled: true
+    mode: html
+    stage: 征求意见中
+    url: https://www.chinatax.gov.cn/chinatax/n810356/n810961/yjzj_zjjg_list.html
+    base_url: https://www.chinatax.gov.cn
+    list_selector: "div.zjlist li"
+    title_selector: "a"
+    link_selector: "a"
+    keywords: ["征求意见"]
+    max_new_per_source: 5
+
+  - name: 财政部-意见征集
+    type: public
+    enabled: true
+    mode: html
+    stage: 征求意见中
+    url: http://www.mof.gov.cn/gongzhongcanyu/yijianzhengji/
+    base_url: http://www.mof.gov.cn
+    list_selector: "ul.yjjyList li"
+    title_selector: "a"
+    link_selector: "a"
+    max_new_per_source: 5
 
   # ---------------------------------------------------------------- 税务总局
   - name: 税务总局-税务规范性文件
