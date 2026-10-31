@@ -118,17 +118,71 @@ def delete_remote(repo: str, name: str, sha: str, branch: str) -> bool:
     return resp.status_code in (200, 201)
 
 
-def parse_date(value: str) -> date | None:
+def parse_date(value: str | None) -> date | None:
     try:
         return datetime.strptime((value or "")[:10], "%Y-%m-%d").date()
     except ValueError:
         return None
 
 
+def _event_stage(e: dict) -> str:
+    doc = e.get("doc") or {}
+    return (doc.get("stage") or e.get("stage") or "").strip()
+
+
+def _dedupe_key(e: dict) -> str:
+    doc = e.get("doc") or {}
+    no = "".join((doc.get("doc_no") or "").split())
+    if no:
+        return no
+    return ("".join((doc.get("title_clean") or e.get("title") or "").split()))[:40]
+
+
+def _score(e: dict) -> float:
+    """同一条政策多源发布时，留信息最全、来源最权威的那份。"""
+    doc = e.get("doc") or {}
+    s = 0.0
+    if "税务总局" in (e.get("source") or ""):
+        s += 2
+    if doc.get("effective_date"):
+        s += 1
+    if doc.get("summary"):
+        s += 0.5
+    return s
+
+
+def dedupe(events: list[dict]) -> list[dict]:
+    best: dict[str, dict] = {}
+    for e in events:
+        k = _dedupe_key(e)
+        if not k:
+            continue
+        if k not in best or _score(e) > _score(best[k]):
+            best[k] = e
+    return list(best.values())
+
+
+def worth_sending(e: dict, today: date | None = None) -> bool:
+    """兜底过滤：outbox 里万一还躺着过期旧文，也别推出去。"""
+    today = today or date.today()
+    doc = e.get("doc") or {}
+    signed = parse_date(doc.get("signed_date"))
+    eff = parse_date(doc.get("effective_date"))
+    if _event_stage(e) == "征求意见中":
+        if signed is None or (today - signed).days <= 45:
+            return True
+    if signed is not None and (today - signed).days <= 45:
+        return True
+    if eff is not None and -7 <= (eff - today).days <= 120:
+        return True
+    return False
+
+
 def pick_upcoming(items: list[dict], notified: set[str], force: bool = False) -> list[dict]:
     """未来 30 天内生效的条目；按提醒节点筛掉重复提醒过的。"""
     today = date.today()
     out: list[dict] = []
+    seen: set[str] = set()
     for it in items:
         eff = parse_date(it.get("effective_date", ""))
         if eff is None:
@@ -136,9 +190,18 @@ def pick_upcoming(items: list[dict], notified: set[str], force: bool = False) ->
         left = (eff - today).days
         if not (0 <= left <= UPCOMING_WINDOW):
             continue
-        key = f"{it.get('event_id')}:{left}"
-        if not force and key in notified:
+        dedup = "".join((it.get("doc_no") or it.get("title") or "").split())[:40]
+        if dedup in seen:
             continue
+        eid = it.get("event_id") or dedup
+        key = f"{eid}:{left}"
+        if not force:
+            if key in notified:
+                continue
+            # 已经提醒过的：只在 14/7/3/1/0 这些节点再提醒，避免天天刷屏
+            if any(k.startswith(f"{eid}:") for k in notified) and left not in REMIND_DAYS:
+                continue
+        seen.add(dedup)
         entry = dict(it)
         entry["days_left"] = left
         out.append(entry)
@@ -177,6 +240,14 @@ def main() -> int:
     notified = load_json_set(NOTIFIED)
     upcoming = [] if args.no_upcoming else pick_upcoming(
         fetch_calendar(repo, args.branch), notified, force=args.dry_run or args.all)
+
+    kept = []
+    for e in events:
+        if worth_sending(e):
+            kept.append(e)
+        else:
+            print(f"[daily] 丢弃过期旧文：{(e.get('doc') or {}).get('title_clean') or e.get('title')}")
+    events = dedupe(kept)
 
     if not events and not upcoming:
         print("[daily] 今天没有新公告，也没有临近生效的政策，不发")

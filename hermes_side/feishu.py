@@ -223,6 +223,37 @@ def _stage(event: dict) -> str:
     return (doc.get("stage") or event.get("stage") or "").strip()
 
 
+def _parse(value: str | None):
+    from datetime import datetime as _dt
+    try:
+        return _dt.strptime((value or "")[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return None
+
+
+def _split_events(events: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
+    """把事件分成：新发布 / 老文件但将来才生效 / 征求意见中。"""
+    from datetime import date as _date
+    today = _date.today()
+    news, pending, drafts = [], [], []
+    for e in events:
+        doc = e.get("doc") or {}
+        stage = _stage(e)
+        signed = _parse(doc.get("signed_date"))
+        eff = _parse(doc.get("effective_date"))
+        if stage == STAGE_DRAFT:
+            deadline = _parse(doc.get("comment_deadline"))
+            if deadline is not None and (today - deadline).days > 0:
+                continue                       # 征集期已过，没价值了
+            drafts.append(e)
+        elif eff is not None and (eff - today).days >= 0 and (
+                signed is None or (today - signed).days > 45):
+            pending.append(e)                  # 早就发布、还没生效
+        else:
+            news.append(e)
+    return news, pending, drafts
+
+
 def _item_block(i: int, e: dict) -> dict:
     doc = e.get("doc") or {}
     head = _h(doc.get("title_clean") or e.get("title") or "")
@@ -251,12 +282,34 @@ def build_digest_card(events: list[dict], date_label: str = "", max_items: int =
                       upcoming: list[dict] | None = None) -> dict:
     """日报卡：① 新政速览 ② 即将生效 ③ 征求意见中。"""
     events = events or []
-    drafts = [e for e in events if _stage(e) == STAGE_DRAFT]
-    news = [e for e in events if _stage(e) != STAGE_DRAFT]
+    news, pending, drafts = _split_events(events)
     # 先按日期从新到旧，再按风险稳定排序（高风险在前）
     news.sort(key=lambda e: str((e.get("doc") or {}).get("signed_date")
                                 or e.get("published_at") or ""), reverse=True)
     news.sort(key=lambda e: RISK_ORDER.get(((e.get("doc") or {}).get("risk_level") or "低"), 3))
+
+    # 「即将生效」= 已发布但还没生效的旧文件 + 日历里 30 天内生效的
+    upcoming = list(upcoming or [])
+    seen_keys = {"".join((it.get("doc_no") or it.get("title") or "").split())[:40] for it in upcoming}
+    for e in pending:
+        doc = e.get("doc") or {}
+        key = "".join((doc.get("doc_no") or doc.get("title_clean") or e.get("title") or "").split())[:40]
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        upcoming.append({
+            "event_id": e.get("event_id"), "title": doc.get("title_clean") or e.get("title"),
+            "doc_no": doc.get("doc_no") or "", "effective_date": doc.get("effective_date") or "",
+            "days_left": None,
+            "url": e.get("url"),
+        })
+    for it in upcoming:
+        if it.get("days_left") is None:
+            eff = _parse(it.get("effective_date"))
+            if eff is not None:
+                from datetime import date as _d
+                it["days_left"] = (eff - _d.today()).days
+    upcoming.sort(key=lambda x: (x.get("effective_date") or ""))
 
     elements: list[dict] = []
 
