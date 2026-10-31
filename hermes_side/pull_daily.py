@@ -260,15 +260,15 @@ def main() -> int:
     if args.dry_run or not ok:
         return 0 if ok else 1
 
-    all_ids = {e.get("event_id") for e in events}
-    sent_ids = {Path(f["name"]).stem for f in pending if Path(f["name"]).stem in all_ids}
-    processed |= sent_ids
+    # 发送成功：本轮拉到的 outbox 全部归档——发出去的、被判为过期/重复的都不再重放
+    all_ids = {Path(f["name"]).stem for f in pending}
+    processed |= all_ids
     save_processed(processed)
     save_json_set(NOTIFIED, notified)
 
     if not args.no_delete:
         for f in pending:
-            if Path(f["name"]).stem in sent_ids:
+            if Path(f["name"]).stem in all_ids:
                 delete_remote(repo, f["name"], f["sha"], args.branch)
     return 0
 
