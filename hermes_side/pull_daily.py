@@ -37,6 +37,7 @@ API = "https://api.github.com"
 DATA_DIR = Path(os.environ.get("WATCH_DATA_DIR", Path(__file__).resolve().parent / "data"))
 PROCESSED = DATA_DIR / "processed.json"
 NOTIFIED = DATA_DIR / "calendar_notified.json"
+DRAFTS = DATA_DIR / "drafts.json"
 
 # 生效倒计时提醒节点：进入 30 天窗口先提醒一次，之后在这些天数上再提醒
 UPCOMING_WINDOW = 30
@@ -178,8 +179,9 @@ def worth_sending(e: dict, today: date | None = None) -> bool:
     return False
 
 
-def pick_upcoming(items: list[dict], notified: set[str], force: bool = False) -> list[dict]:
-    """未来 30 天内生效的条目；按提醒节点筛掉重复提醒过的。"""
+def pick_upcoming(items: list[dict], notified: set[str], force: bool = False,
+                  keep_all: bool = False) -> list[dict]:
+    """未来 30 天内生效的条目。keep_all=True 时每天全量列出，不按提醒节点筛。"""
     today = date.today()
     out: list[dict] = []
     seen: set[str] = set()
@@ -195,7 +197,7 @@ def pick_upcoming(items: list[dict], notified: set[str], force: bool = False) ->
             continue
         eid = it.get("event_id") or dedup
         key = f"{eid}:{left}"
-        if not force:
+        if not force and not keep_all:
             if key in notified:
                 continue
             # 已经提醒过的：只在 14/7/3/1/0 这些节点再提醒，避免天天刷屏
@@ -207,6 +209,52 @@ def pick_upcoming(items: list[dict], notified: set[str], force: bool = False) ->
         out.append(entry)
         notified.add(key)
     out.sort(key=lambda x: x["days_left"])
+    return out
+
+
+def load_drafts() -> dict:
+    if not DRAFTS.exists():
+        return {}
+    try:
+        return json.loads(DRAFTS.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def save_drafts(d: dict) -> None:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    DRAFTS.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def _draft_key(e: dict) -> str:
+    doc = e.get("doc") or {}
+    return "".join((doc.get("doc_no") or doc.get("title_clean") or e.get("title") or "").split())[:60]
+
+
+def merge_drafts(old: dict, events: list[dict], today: date) -> dict:
+    """把新的征求意见稿并入持久表；清掉征集期已过或跟踪超过 180 天的。"""
+    cur = dict(old)
+    for e in events:
+        if _event_stage(e) != "征求意见中":
+            continue
+        k = _draft_key(e)
+        if not k:
+            continue
+        prev = cur.get(k) or {}
+        entry = dict(e)
+        entry["first_seen"] = prev.get("first_seen") or today.isoformat()
+        entry["last_seen"] = today.isoformat()
+        cur[k] = entry
+    out = {}
+    for k, e in cur.items():
+        doc = e.get("doc") or {}
+        deadline = parse_date(doc.get("comment_deadline"))
+        if deadline is not None and (today - deadline).days > 0:
+            continue
+        first = parse_date(e.get("first_seen"))
+        if first is not None and (today - first).days > 180:
+            continue
+        out[k] = e
     return out
 
 
@@ -239,7 +287,11 @@ def main() -> int:
 
     notified = load_json_set(NOTIFIED)
     upcoming = [] if args.no_upcoming else pick_upcoming(
-        fetch_calendar(repo, args.branch), notified, force=args.dry_run or args.all)
+        fetch_calendar(repo, args.branch), notified, force=True, keep_all=True)
+
+    # 征求意见稿：持久化，天天保留，直到征集期结束
+    drafts_map = merge_drafts(load_drafts(), events, date.today())
+    drafts_all = list(drafts_map.values())
 
     kept = []
     for e in events:
@@ -249,13 +301,10 @@ def main() -> int:
             print(f"[daily] 丢弃过期旧文：{(e.get('doc') or {}).get('title_clean') or e.get('title')}")
     events = dedupe(kept)
 
-    if not events and not upcoming:
-        print("[daily] 今天没有新公告，也没有临近生效的政策，不发")
-        return 0
-
     label = datetime.now().strftime("%m月%d日")
-    ok = feishu.send_digest(events, date_label=label, upcoming=upcoming, dry_run=args.dry_run)
-    print(f"[daily] 新政 {len(events)} 条 + 即将生效 {len(upcoming)} 条 → "
+    ok = feishu.send_digest(events, date_label=label, upcoming=upcoming,
+                            drafts_persist=drafts_all, dry_run=args.dry_run)
+    print(f"[daily] 新政 {len(events)} 条 + 即将到期 {len(upcoming)} 条 + 征求意见 {len(drafts_all)} 条 → "
           f"{'预览' if args.dry_run else ('已发送' if ok else '发送失败')}")
     if args.dry_run or not ok:
         return 0 if ok else 1
@@ -265,6 +314,7 @@ def main() -> int:
     processed |= all_ids
     save_processed(processed)
     save_json_set(NOTIFIED, notified)
+    save_drafts(drafts_map)
 
     if not args.no_delete:
         for f in pending:
