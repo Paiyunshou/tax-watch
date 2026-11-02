@@ -286,7 +286,7 @@ def _section_title(text: str) -> dict:
 def build_digest_card(events: list[dict], date_label: str = "", max_items: int = 8,
                       upcoming: list[dict] | None = None,
                       drafts_persist: list[dict] | None = None) -> dict:
-    """日报卡：① 即将到期 ② 征求意见稿 ③ 今日新政。"""
+    """日报卡：① 即将生效（近 1 年）② 征求意见稿（截止未到期）③ 今日新政（最近一天）。"""
     events = events or []
     news, pending, drafts = _split_events(events)
     if drafts_persist:
@@ -328,7 +328,7 @@ def build_digest_card(events: list[dict], date_label: str = "", max_items: int =
 
     # ① 即将到期（每天全量保留）
     if upcoming:
-        elements.append(_section_title(f"⏰ 即将到期（{len(upcoming)} 条）"))
+        elements.append(_section_title(f"⏰ 即将生效（{len(upcoming)} 条）"))
         lines_out = []
         for it in upcoming:
             left = int(it.get("days_left") or 0)
@@ -338,9 +338,9 @@ def build_digest_card(events: list[dict], date_label: str = "", max_items: int =
                              f"[{_h(it.get('title'))[:46]}]({it.get('url')})")
         elements.append({"tag": "div", "text": {"tag": "lark_md", "content": "\n".join(lines_out)}})
     else:
-        elements.append(_section_title("⏰ 即将到期（0 条）"))
+        elements.append(_section_title("⏰ 即将生效（0 条）"))
         elements.append({"tag": "div", "text": {"tag": "lark_md",
-                                                "content": "近 30 天内没有即将生效的政策。"}})
+                                                "content": "近 1 年内没有即将生效的政策。"}})
 
     # ② 征求意见稿（保留往期，持续跟踪）
     elements.append({"tag": "hr"})

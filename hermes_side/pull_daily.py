@@ -40,7 +40,7 @@ NOTIFIED = DATA_DIR / "calendar_notified.json"
 DRAFTS = DATA_DIR / "drafts.json"
 
 # 生效倒计时提醒节点：进入 30 天窗口先提醒一次，之后在这些天数上再提醒
-UPCOMING_WINDOW = 30
+UPCOMING_WINDOW = 365
 REMIND_DAYS = {14, 7, 3, 1, 0}
 
 
@@ -179,6 +179,20 @@ def worth_sending(e: dict, today: date | None = None) -> bool:
     return False
 
 
+def _recent_or_not_news(e: dict, today: date, days: int = 1) -> bool:
+    """今日新政只看最近 days 天发布的；草案/未生效的照旧保留（它们属于另外两块）。"""
+    doc = e.get("doc") or {}
+    if _event_stage(e) == "征求意见中":
+        return True
+    eff = parse_date(doc.get("effective_date"))
+    if eff is not None and (eff - today).days >= 0:
+        return True
+    signed = parse_date(doc.get("signed_date"))
+    if signed is None:
+        return True
+    return (today - signed).days <= days
+
+
 def pick_upcoming(items: list[dict], notified: set[str], force: bool = False,
                   keep_all: bool = False) -> list[dict]:
     """未来 30 天内生效的条目。keep_all=True 时每天全量列出，不按提醒节点筛。"""
@@ -299,12 +313,15 @@ def main() -> int:
             kept.append(e)
         else:
             print(f"[daily] 丢弃过期旧文：{(e.get('doc') or {}).get('title_clean') or e.get('title')}")
-    events = dedupe(kept)
+    deduped = dedupe(kept)
+    events = [e for e in deduped if _recent_or_not_news(e, date.today())]
+    if len(events) < len(deduped):
+        print(f"[daily] 非当日发布，跳过 {len(deduped) - len(events)} 条")
 
     label = datetime.now().strftime("%m月%d日")
     ok = feishu.send_digest(events, date_label=label, upcoming=upcoming,
                             drafts_persist=drafts_all, dry_run=args.dry_run)
-    print(f"[daily] 新政 {len(events)} 条 + 即将到期 {len(upcoming)} 条 + 征求意见 {len(drafts_all)} 条 → "
+    print(f"[daily] 新政 {len(events)} 条 + 即将生效 {len(upcoming)} 条 + 征求意见 {len(drafts_all)} 条 → "
           f"{'预览' if args.dry_run else ('已发送' if ok else '发送失败')}")
     if args.dry_run or not ok:
         return 0 if ok else 1
