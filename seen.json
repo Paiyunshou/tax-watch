@@ -1,8 +1,8 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-11-02T05:07:15+00:00",
-   "last_run": "2026-11-02T05:07:15+00:00",
+   "last_ok": "2026-11-02T20:30:58+00:00",
+   "last_run": "2026-11-02T20:30:58+00:00",
    "urls": {
     "https://www.safe.gov.cn/safe/2024/1227/25581.html": {
      "pushed": false,
@@ -130,8 +130,8 @@
    }
   },
   "海关总署-政策文件(国务院库)": {
-   "last_ok": "2026-11-02T05:07:40+00:00",
-   "last_run": "2026-11-02T05:07:40+00:00",
+   "last_ok": "2026-11-02T20:31:05+00:00",
+   "last_run": "2026-11-02T20:31:05+00:00",
    "urls": {
     "https://www.gov.cn/zhengce/zhengceku/202603/content_7063537.htm": {
      "pushed": false,
@@ -155,8 +155,8 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-11-02T05:07:13+00:00",
-   "last_run": "2026-11-02T05:07:13+00:00",
+   "last_ok": "2026-11-02T20:30:55+00:00",
+   "last_run": "2026-11-02T20:30:55+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233098/content.html": {
      "pushed": false,
@@ -291,8 +291,8 @@
    }
   },
   "税务总局-意见征集": {
-   "last_ok": "2026-11-02T05:04:35+00:00",
-   "last_run": "2026-11-02T05:04:35+00:00",
+   "last_ok": "2026-11-02T20:29:02+00:00",
+   "last_run": "2026-11-02T20:29:02+00:00",
    "urls": {
     "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5237598/content.html": {
      "pushed": false,
@@ -362,13 +362,61 @@
      "seen_at": "2026-10-31T07:57:15+00:00",
      "title": "国家税务总局关于《非居民企业机构、场所企业所得税管理办法（征求意见稿）》公开征求意见的通知",
      "url": "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5253117/content.html"
+    },
+    "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5253240/content.html": {
+     "pushed": true,
+     "seen_at": "2026-11-02T20:29:02+00:00",
+     "title": "国家税务总局关于《抵税财物拍卖、变卖办法（征求意见稿）》公开征求意见的通知",
+     "url": "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5253240/content.html"
     }
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-11-02T05:06:28+00:00",
-   "last_run": "2026-11-02T05:06:28+00:00",
+   "last_ok": "2026-11-02T20:30:14+00:00",
+   "last_run": "2026-11-02T20:30:14+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239258/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:14+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于发布《成品油涉税产品检测管理暂行办法》的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239258/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239280/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:08+00:00",
+     "skip": "stale",
+     "title": "国家税务总局财政部商务部海关总署国家市场监督管理总局关于应征国内环节税货物出口优化服务规范管理有关事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239280/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239603/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:00+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于推广境外旅客购物离境退税“即买即退”服务措施的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239603/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240071/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:51+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于修改《境外旅客购物离境退税管理办法（试行）》的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240071/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240145/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:58+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于修订《国际运输船舶增值税退税管理办法》的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240145/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240851/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:40+00:00",
+     "skip": "stale",
+     "title": "国家税务总局关于发布《纳税缴费信用管理办法》的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240851/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5241106/content.html": {
      "pushed": false,
      "seen_at": "2026-11-02T05:06:28+00:00",
@@ -600,9 +648,51 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-11-02T05:07:12+00:00",
-   "last_run": "2026-11-02T05:07:12+00:00",
+   "last_ok": "2026-11-02T20:30:54+00:00",
+   "last_run": "2026-11-02T20:30:54+00:00",
    "urls": {
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247182/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:54+00:00",
+     "skip": "stale",
+     "title": "财政部商务部文化和旅游部海关总署税务总局关于口岸进境免税店有关事宜的通知",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247182/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247431/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:51+00:00",
+     "skip": "stale",
+     "title": "财政部税务总局关于增值税征税具体范围有关事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247431/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247434/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:44+00:00",
+     "skip": "stale",
+     "title": "财政部税务总局关于增值税法施行后增值税优惠政策衔接事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247434/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247437/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:36+00:00",
+     "skip": "stale",
+     "title": "财政部税务总局关于出口业务增值税和消费税政策的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247437/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247440/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:31+00:00",
+     "skip": "stale",
+     "title": "财政部税务总局关于明确增值税应税交易销售额计算口径的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247440/content.html"
+    },
+    "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247494/content.html": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:30:26+00:00",
+     "skip": "stale",
+     "title": "财政部税务总局关于增值税进项税额抵扣等有关事项的公告",
+     "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247494/content.html"
+    },
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247497/content.html": {
      "pushed": false,
      "seen_at": "2026-11-02T05:07:12+00:00",
@@ -833,14 +923,42 @@
    }
   },
   "财政部-意见征集": {
-   "last_ok": "2026-11-02T05:05:24+00:00",
-   "last_run": "2026-11-02T05:05:24+00:00",
+   "last_ok": "2026-11-02T20:29:27+00:00",
+   "last_run": "2026-11-02T20:29:27+00:00",
    "urls": {
+    "http://gks.mof.gov.cn/gongzuodongtai/202510/t20251028_3975062.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:27+00:00",
+     "skip": "stale",
+     "title": "关于征求《关于推动解决政府采购异常低价问题的通知（征求意见稿）》意...",
+     "url": "http://gks.mof.gov.cn/gongzuodongtai/202510/t20251028_3975062.htm"
+    },
+    "http://gks.mof.gov.cn/gongzuodongtai/202511/t20251119_3976788.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:14+00:00",
+     "skip": "stale",
+     "title": "关于征求《新能源汽车政府采购需求标准（征求意见稿）》意见的函",
+     "url": "http://gks.mof.gov.cn/gongzuodongtai/202511/t20251119_3976788.htm"
+    },
     "http://gks.mof.gov.cn/gongzuodongtai/202610/t20261027_4003590.htm": {
      "pushed": true,
      "seen_at": "2026-10-31T07:57:46+00:00",
      "title": "关于就《政府采购评审专家管理办法(修订征求意见稿)》向社会公开征求意...",
      "url": "http://gks.mof.gov.cn/gongzuodongtai/202610/t20261027_4003590.htm"
+    },
+    "http://kjs.mof.gov.cn/gongzuotongzhi/202511/t20251103_3975602.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:25+00:00",
+     "skip": "stale",
+     "title": "关于征求《会计师事务所职业责任保险暂行办法（修订征求意见稿）》意见的函",
+     "url": "http://kjs.mof.gov.cn/gongzuotongzhi/202511/t20251103_3975602.htm"
+    },
+    "http://kjs.mof.gov.cn/gongzuotongzhi/202512/t20251216_3979209.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:09+00:00",
+     "skip": "stale",
+     "title": "关于就《风险缓释会计——对〈国际财务报告准则第9号〉和〈国际财务报告...",
+     "url": "http://kjs.mof.gov.cn/gongzuotongzhi/202512/t20251216_3979209.htm"
     },
     "http://kjs.mof.gov.cn/gongzuotongzhi/202602/t20260204_3983318.htm": {
      "pushed": false,
@@ -934,12 +1052,19 @@
      "skip": "stale",
      "title": "《中华人民共和国地方附加税法（征求意见稿）》公开征求意见",
      "url": "http://szs.mof.gov.cn/gongzuodongtai/202608/t20260828_3996244.htm"
+    },
+    "http://zcgls.mof.gov.cn/zhengcefabu/202511/t20251104_3975733.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-02T20:29:20+00:00",
+     "skip": "stale",
+     "title": "关于向社会公开征求《企业财务通则（公开征求意见稿）》意见的通告",
+     "url": "http://zcgls.mof.gov.cn/zhengcefabu/202511/t20251104_3975733.htm"
     }
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-11-02T05:07:14+00:00",
-   "last_run": "2026-11-02T05:07:14+00:00",
+   "last_ok": "2026-11-02T20:30:56+00:00",
+   "last_run": "2026-11-02T20:30:56+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
