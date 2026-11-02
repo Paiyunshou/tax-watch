@@ -38,6 +38,7 @@ DATA_DIR = Path(os.environ.get("WATCH_DATA_DIR", Path(__file__).resolve().parent
 PROCESSED = DATA_DIR / "processed.json"
 NOTIFIED = DATA_DIR / "calendar_notified.json"
 DRAFTS = DATA_DIR / "drafts.json"
+UPCOMING_FILE = DATA_DIR / "upcoming.json"
 
 # 生效倒计时提醒节点：进入 30 天窗口先提醒一次，之后在这些天数上再提醒
 UPCOMING_WINDOW = 365
@@ -226,6 +227,58 @@ def pick_upcoming(items: list[dict], notified: set[str], force: bool = False,
     return out
 
 
+def load_upcoming() -> dict:
+    if not UPCOMING_FILE.exists():
+        return {}
+    try:
+        return json.loads(UPCOMING_FILE.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def save_upcoming(d: dict) -> None:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    UPCOMING_FILE.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def _up_key(it: dict) -> str:
+    return "".join((it.get("doc_no") or it.get("title") or "").split())[:60]
+
+
+def merge_upcoming(old: dict, calendar_items: list[dict], events: list[dict], today: date) -> dict:
+    """未生效政策持久表：并入 calendar.json + 本轮事件；生效日已过 7 天的清掉。
+    这样不依赖 Actions 是否把每条都写进 calendar.json。"""
+    cur = dict(old)
+
+    def add(it: dict) -> None:
+        eff = parse_date(it.get("effective_date"))
+        if eff is None or (eff - today).days < 0:
+            return
+        k = _up_key(it)
+        if not k:
+            return
+        cur[k] = dict(it)
+
+    for it in calendar_items:
+        add(it)
+    for e in events:
+        doc = e.get("doc") or {}
+        if _event_stage(e) == "征求意见中":
+            continue
+        add({"event_id": e.get("event_id"), "title": doc.get("title_clean") or e.get("title"),
+             "doc_no": doc.get("doc_no") or "", "effective_date": doc.get("effective_date") or "",
+             "url": e.get("url"), "risk_level": doc.get("risk_level") or "",
+             "signed_date": doc.get("signed_date") or ""})
+
+    out = {}
+    for k, it in cur.items():
+        eff = parse_date(it.get("effective_date"))
+        if eff is None or (eff - today).days < -7:
+            continue
+        out[k] = it
+    return out
+
+
 def load_drafts() -> dict:
     if not DRAFTS.exists():
         return {}
@@ -300,8 +353,10 @@ def main() -> int:
             print(f"[daily] 跳过 {f['name']}：{exc}")
 
     notified = load_json_set(NOTIFIED)
+    cal_items = fetch_calendar(repo, args.branch)
+    upcoming_map = merge_upcoming(load_upcoming(), cal_items, events, date.today())
     upcoming = [] if args.no_upcoming else pick_upcoming(
-        fetch_calendar(repo, args.branch), notified, force=True, keep_all=True)
+        list(upcoming_map.values()), notified, force=True, keep_all=True)
 
     # 征求意见稿：持久化，天天保留，直到征集期结束
     drafts_map = merge_drafts(load_drafts(), events, date.today())
@@ -332,6 +387,7 @@ def main() -> int:
     save_processed(processed)
     save_json_set(NOTIFIED, notified)
     save_drafts(drafts_map)
+    save_upcoming(upcoming_map)
 
     if not args.no_delete:
         for f in pending:
