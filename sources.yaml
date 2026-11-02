@@ -157,6 +157,26 @@ sources:
     verify_ssl: false
     note: "需人工在浏览器登录/过 WAF 后才能访问，按规则不自动处理"
 
+
+  # ------------------------------------------------- 海关（官网 412，走国务院政策库）
+  # 海关总署官网及各地海关均返回 412（WAF），无法直接抓。改用国务院政策文件库的
+  # 「部门文件」搜索接口，按发文机关过滤出海关总署的文件。覆盖重要政策和联合发文，
+  # 日常公告/商品归类决定收录不全。
+  - name: 海关总署-政策文件(国务院库)
+    type: public
+    enabled: true
+    mode: gov_search
+    url: https://sousuo.www.gov.cn/search-gov/data
+    base_url: https://www.gov.cn
+    keywords: ["海关"]
+    api:
+      endpoint: https://sousuo.www.gov.cn/search-gov/data
+      library: zhengcelibrary_bm
+      query: 海关总署
+      puborg_filter: 海关总署
+      pages: 3
+      page_size: 20
+
   # ------------------------------------------------- 新增监控源的模板（照抄改）
   # - name: 某某局-通知公告
   #   type: public

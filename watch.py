@@ -222,6 +222,57 @@ def items_from_json_api(src: dict, fetcher: Fetcher) -> list[dict]:
     return list(collected.values())
 
 
+
+def items_from_gov_search(src: dict, fetcher: Fetcher) -> list[dict]:
+    """国务院政策文件库搜索接口（部门文件库）。
+
+    用于目标官网被 WAF 拦住（如海关总署 412）时，从国务院政策库捞已收录的部门文件。
+      mode: gov_search
+      api:
+        endpoint: https://sousuo.www.gov.cn/search-gov/data
+        library: zhengcelibrary_bm     # 部门文件库
+        query: 海关总署
+        puborg_filter: 海关总署         # 只保留发文机关含该词
+        pages: 3
+        page_size: 20
+    """
+    api = src.get("api") or {}
+    endpoint = api.get("endpoint") or "https://sousuo.www.gov.cn/search-gov/data"
+    library = api.get("library") or "zhengcelibrary_bm"
+    query = api.get("query") or ""
+    puborg_filter = api.get("puborg_filter") or ""
+    pages = int(api.get("pages") or api.get("max_pages") or 1)
+    size = int(api.get("page_size") or 20)
+    headers = {"Referer": "https://www.gov.cn/", "Accept": "application/json"}
+
+    collected: dict[str, dict] = {}
+    for page in range(1, pages + 1):
+        params = {"t": library, "q": query, "p": page, "n": size,
+                  "sort": "pubtime", "sortType": 1}
+        resp = fetcher.request("GET", endpoint, params=params, headers=headers)
+        try:
+            sv = (resp.json() or {}).get("searchVO") or {}
+            rows = sv.get("listVO") or []
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(f"gov 搜索接口返回非预期 JSON：{exc}") from exc
+        if not rows:
+            break
+        for row in rows:
+            title = clean_text(re.sub(r"<[^>]+>", "", row.get("title") or ""))
+            url = (row.get("url") or "").strip()
+            if not title or not url:
+                continue
+            org = row.get("puborg") or ""
+            if puborg_filter and puborg_filter not in org:
+                continue
+            date = (row.get("pubtimeStr") or "").replace(".", "-")[:10]
+            collected.setdefault(norm_url(url), {
+                "title": title, "url": url, "date": date,
+                "meta": {"puborg": org} if org else {},
+            })
+    return list(collected.values())
+
+
 def items_from_html(src: dict, fetcher: Fetcher) -> list[dict]:
     url = src.get("url")
     if not url:
@@ -560,8 +611,11 @@ def process_source(src: dict, seen: dict, defaults: dict, args: argparse.Namespa
 
     log.info("[抓取] %s", name)
     try:
-        if (src.get("mode") or "html") == "json_api":
+        _mode = (src.get("mode") or "html")
+        if _mode == "json_api":
             items = items_from_json_api(src, fetcher)
+        elif _mode == "gov_search":
+            items = items_from_gov_search(src, fetcher)
         else:
             items = items_from_html(src, fetcher)
     except Exception as exc:  # noqa: BLE001
