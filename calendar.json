@@ -1,5 +1,17 @@
 {
  "items": {
+  "0d2259e7d49f5381": {
+   "added_at": "2026-11-09T21:00:20+00:00",
+   "doc_no": "税委会公告2026年第6号",
+   "effective_date": "2026-11-10",
+   "event_id": "0d2259e7d49f5381",
+   "issuer": "国务院关税税则委员会",
+   "risk_level": "高",
+   "signed_date": "2026-11-09",
+   "source": "财政部-政策发布",
+   "title": "国务院关税税则委员会关于调整对原产于美国的进口商品加征关税措施的公告",
+   "url": "http://gss.mof.gov.cn/gzdt/zhengcefabu/202611/t20261109_4004260.htm"
+  },
   "378c8a0a78a63a1d": {
    "added_at": "2026-10-31T08:02:07+00:00",
    "doc_no": "财政部 税务总局 工业和信息化部公告2026年第19号",
@@ -25,6 +37,6 @@
    "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5250801/content.html"
   }
  },
- "updated_at": "2026-11-06T17:39:49+00:00",
+ "updated_at": "2026-11-09T21:00:28+00:00",
  "version": 1
 }
