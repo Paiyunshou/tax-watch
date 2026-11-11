@@ -1,8 +1,8 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-11-10T18:07:53+00:00",
-   "last_run": "2026-11-10T18:07:53+00:00",
+   "last_ok": "2026-11-11T18:00:46+00:00",
+   "last_run": "2026-11-11T18:00:46+00:00",
    "urls": {
     "https://www.safe.gov.cn/safe/2024/1227/25581.html": {
      "pushed": false,
@@ -130,8 +130,8 @@
    }
   },
   "海关总署-政策文件(国务院库)": {
-   "last_ok": "2026-11-10T18:07:58+00:00",
-   "last_run": "2026-11-10T18:07:58+00:00",
+   "last_ok": "2026-11-11T18:00:53+00:00",
+   "last_run": "2026-11-11T18:00:53+00:00",
    "urls": {
     "https://www.gov.cn/zhengce/zhengceku/202603/content_7063537.htm": {
      "pushed": false,
@@ -155,8 +155,8 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-11-10T18:07:51+00:00",
-   "last_run": "2026-11-10T18:07:51+00:00",
+   "last_ok": "2026-11-11T18:00:24+00:00",
+   "last_run": "2026-11-11T18:00:24+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233098/content.html": {
      "pushed": false,
@@ -291,8 +291,8 @@
    }
   },
   "税务总局-意见征集": {
-   "last_ok": "2026-11-10T18:07:42+00:00",
-   "last_run": "2026-11-10T18:07:42+00:00",
+   "last_ok": "2026-11-11T18:00:15+00:00",
+   "last_run": "2026-11-11T18:00:15+00:00",
    "urls": {
     "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5237598/content.html": {
      "pushed": false,
@@ -378,8 +378,8 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-11-10T18:07:46+00:00",
-   "last_run": "2026-11-10T18:07:46+00:00",
+   "last_ok": "2026-11-11T18:00:20+00:00",
+   "last_run": "2026-11-11T18:00:20+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239258/content.html": {
      "pushed": false,
@@ -660,8 +660,8 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-11-10T18:07:50+00:00",
-   "last_run": "2026-11-10T18:07:50+00:00",
+   "last_ok": "2026-11-11T18:00:23+00:00",
+   "last_run": "2026-11-11T18:00:23+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247182/content.html": {
      "pushed": false,
@@ -935,8 +935,8 @@
    }
   },
   "财政部-意见征集": {
-   "last_ok": "2026-11-10T18:07:44+00:00",
-   "last_run": "2026-11-10T18:07:44+00:00",
+   "last_ok": "2026-11-11T18:00:18+00:00",
+   "last_run": "2026-11-11T18:00:18+00:00",
    "urls": {
     "http://gks.mof.gov.cn/gongzuodongtai/202510/t20251028_3975062.htm": {
      "pushed": false,
@@ -1075,8 +1075,8 @@
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-11-10T18:07:52+00:00",
-   "last_run": "2026-11-10T18:07:52+00:00",
+   "last_ok": "2026-11-11T18:00:44+00:00",
+   "last_run": "2026-11-11T18:00:44+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -1197,6 +1197,12 @@
      "seen_at": "2026-10-29T17:03:34+00:00",
      "title": "《会计师事务所职业责任保险实施办法》修订印发",
      "url": "http://kjs.mof.gov.cn/zhengcefabu/202608/t20260827_3996207.htm"
+    },
+    "http://kjs.mof.gov.cn/zhengcefabu/202611/t20261105_4004148.htm": {
+     "pushed": true,
+     "seen_at": "2026-11-11T18:00:44+00:00",
+     "title": "财政部印发《会计改革与发展“十五五”规划》",
+     "url": "http://kjs.mof.gov.cn/zhengcefabu/202611/t20261105_4004148.htm"
     },
     "http://sbs.mof.gov.cn/zhengcefabu/202604/t20260421_3988007.htm": {
      "pushed": false,
