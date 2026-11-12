@@ -24,6 +24,30 @@
    "title": "财政部 税务总局 工业和信息化部关于调整节能汽车、新能源汽车车船税优惠政策的公告",
    "url": "http://szs.mof.gov.cn/zhengcefabu/202607/t20260703_3992823.htm"
   },
+  "3ff67208462851a1": {
+   "added_at": "2026-11-12T18:32:42+00:00",
+   "doc_no": "财库〔2026〕15号",
+   "effective_date": "2027-01-01",
+   "event_id": "3ff67208462851a1",
+   "issuer": "财政部",
+   "risk_level": "中",
+   "signed_date": "2026-10-11",
+   "source": "财政部-政策发布",
+   "title": "财政部关于实施《政府部门财务报告编制操作指南》的通知",
+   "url": "http://gks.mof.gov.cn/guizhangzhidu/202611/t20261104_4004092.htm"
+  },
+  "a4b1e093d9819805": {
+   "added_at": "2026-11-12T18:32:30+00:00",
+   "doc_no": "财库〔2026〕16号",
+   "effective_date": "2027-01-01",
+   "event_id": "a4b1e093d9819805",
+   "issuer": "财政部",
+   "risk_level": "中",
+   "signed_date": "2026-10-11",
+   "source": "财政部-政策发布",
+   "title": "财政部关于实施《政府综合财务报告编制操作指南》的通知",
+   "url": "http://gks.mof.gov.cn/guizhangzhidu/202611/t20261104_4004093.htm"
+  },
   "a852c4f3191a32f7": {
    "added_at": "2026-10-31T07:59:31+00:00",
    "doc_no": "财政部 税务总局 工业和信息化部公告2026年第19号",
@@ -49,6 +73,6 @@
    "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5253359/content.html"
   }
  },
- "updated_at": "2026-11-12T03:18:16+00:00",
+ "updated_at": "2026-11-12T18:32:50+00:00",
  "version": 1
 }
