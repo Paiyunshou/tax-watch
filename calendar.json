@@ -36,6 +36,18 @@
    "title": "财政部关于实施《政府部门财务报告编制操作指南》的通知",
    "url": "http://gks.mof.gov.cn/guizhangzhidu/202611/t20261104_4004092.htm"
   },
+  "8058e5f266eb6cc7": {
+   "added_at": "2026-11-13T17:59:09+00:00",
+   "doc_no": "财法〔2026〕2号",
+   "effective_date": "2027-01-01",
+   "event_id": "8058e5f266eb6cc7",
+   "issuer": "财政部",
+   "risk_level": "中",
+   "signed_date": "2026-10-19",
+   "source": "财政部-政策发布",
+   "title": "《财政部门行使行政处罚裁量权指导规范》修订印发",
+   "url": "http://tfs.mof.gov.cn/zhengcefabu/202611/t20261111_4004415.htm"
+  },
   "a4b1e093d9819805": {
    "added_at": "2026-11-12T18:32:30+00:00",
    "doc_no": "财库〔2026〕16号",
@@ -73,6 +85,6 @@
    "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5253359/content.html"
   }
  },
- "updated_at": "2026-11-12T18:32:50+00:00",
+ "updated_at": "2026-11-13T17:59:18+00:00",
  "version": 1
 }
