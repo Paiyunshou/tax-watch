@@ -1,8 +1,8 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-11-13T17:59:11+00:00",
-   "last_run": "2026-11-13T17:59:11+00:00",
+   "last_ok": "2026-11-19T19:08:18+00:00",
+   "last_run": "2026-11-19T19:08:18+00:00",
    "urls": {
     "https://www.safe.gov.cn/safe/2024/1227/25581.html": {
      "pushed": false,
@@ -130,8 +130,8 @@
    }
   },
   "海关总署-政策文件(国务院库)": {
-   "last_ok": "2026-11-13T17:59:18+00:00",
-   "last_run": "2026-11-13T17:59:18+00:00",
+   "last_ok": "2026-11-19T19:08:25+00:00",
+   "last_run": "2026-11-19T19:08:25+00:00",
    "urls": {
     "https://www.gov.cn/zhengce/zhengceku/202603/content_7063537.htm": {
      "pushed": false,
@@ -155,8 +155,8 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-11-13T17:58:58+00:00",
-   "last_run": "2026-11-13T17:58:58+00:00",
+   "last_ok": "2026-11-19T19:08:16+00:00",
+   "last_run": "2026-11-19T19:08:16+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233098/content.html": {
      "pushed": false,
@@ -291,8 +291,8 @@
    }
   },
   "税务总局-意见征集": {
-   "last_ok": "2026-11-13T17:58:49+00:00",
-   "last_run": "2026-11-13T17:58:49+00:00",
+   "last_ok": "2026-11-19T19:07:34+00:00",
+   "last_run": "2026-11-19T19:07:34+00:00",
    "urls": {
     "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5237598/content.html": {
      "pushed": false,
@@ -378,8 +378,8 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-11-13T17:58:53+00:00",
-   "last_run": "2026-11-13T17:58:53+00:00",
+   "last_ok": "2026-11-19T19:08:12+00:00",
+   "last_run": "2026-11-19T19:08:12+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239258/content.html": {
      "pushed": false,
@@ -660,8 +660,8 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-11-13T17:58:56+00:00",
-   "last_run": "2026-11-13T17:58:56+00:00",
+   "last_ok": "2026-11-19T19:08:15+00:00",
+   "last_run": "2026-11-19T19:08:15+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247182/content.html": {
      "pushed": false,
@@ -935,8 +935,8 @@
    }
   },
   "财政部-意见征集": {
-   "last_ok": "2026-11-13T17:58:51+00:00",
-   "last_run": "2026-11-13T17:58:51+00:00",
+   "last_ok": "2026-11-19T19:08:09+00:00",
+   "last_run": "2026-11-19T19:08:09+00:00",
    "urls": {
     "http://gks.mof.gov.cn/gongzuodongtai/202510/t20251028_3975062.htm": {
      "pushed": false,
@@ -1077,12 +1077,46 @@
      "skip": "stale",
      "title": "关于向社会公开征求《企业财务通则（公开征求意见稿）》意见的通告",
      "url": "http://zcgls.mof.gov.cn/zhengcefabu/202511/t20251104_3975733.htm"
+    },
+    "http://zcgls.mof.gov.cn/zhengcefabu/202611/t20261118_4004949.htm": {
+     "pushed": true,
+     "seen_at": "2026-11-19T19:07:44+00:00",
+     "title": "关于向社会公开征求《企业财务管理指引第X号——财务治理（公开征求意见...",
+     "url": "http://zcgls.mof.gov.cn/zhengcefabu/202611/t20261118_4004949.htm"
+    },
+    "https://gks.mof.gov.cn/gongzuodongtai/202511/t20251119_3976788.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-19T19:08:09+00:00",
+     "skip": "stale",
+     "title": "关于征求《新能源汽车政府采购需求标准（征求意见稿）》意见的函",
+     "url": "https://gks.mof.gov.cn/gongzuodongtai/202511/t20251119_3976788.htm"
+    },
+    "https://gks.mof.gov.cn/gongzuodongtai/202610/t20261027_4003590.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-19T19:07:57+00:00",
+     "skip": "irrelevant",
+     "title": "关于就《政府采购评审专家管理办法(修订征求意见稿)》向社会公开征求意...",
+     "url": "https://gks.mof.gov.cn/gongzuodongtai/202610/t20261027_4003590.htm"
+    },
+    "https://gks.mof.gov.cn/gongzuodongtai/202611/t20261117_4004789.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-19T19:07:51+00:00",
+     "skip": "irrelevant",
+     "title": "《商品包装政府采购需求标准（修订征求意见稿）》、《快递包装政府采购...",
+     "url": "https://gks.mof.gov.cn/gongzuodongtai/202611/t20261117_4004789.htm"
+    },
+    "https://szs.mof.gov.cn/gongzuodongtai/202608/t20260828_3996244.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-19T19:08:05+00:00",
+     "skip": "stale",
+     "title": "《中华人民共和国地方附加税法（征求意见稿）》公开征求意见",
+     "url": "https://szs.mof.gov.cn/gongzuodongtai/202608/t20260828_3996244.htm"
     }
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-11-13T17:59:09+00:00",
-   "last_run": "2026-11-13T17:59:09+00:00",
+   "last_ok": "2026-11-19T19:08:17+00:00",
+   "last_run": "2026-11-19T19:08:17+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
