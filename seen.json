@@ -1,8 +1,8 @@
 {
  "sources": {
   "外汇局-政策法规": {
-   "last_ok": "2026-11-19T19:08:18+00:00",
-   "last_run": "2026-11-19T19:08:18+00:00",
+   "last_ok": "2026-11-25T20:06:30+00:00",
+   "last_run": "2026-11-25T20:06:30+00:00",
    "urls": {
     "https://www.safe.gov.cn/safe/2024/1227/25581.html": {
      "pushed": false,
@@ -130,8 +130,8 @@
    }
   },
   "海关总署-政策文件(国务院库)": {
-   "last_ok": "2026-11-19T19:08:25+00:00",
-   "last_run": "2026-11-19T19:08:25+00:00",
+   "last_ok": "2026-11-25T20:06:37+00:00",
+   "last_run": "2026-11-25T20:06:37+00:00",
    "urls": {
     "https://www.gov.cn/zhengce/zhengceku/202603/content_7063537.htm": {
      "pushed": false,
@@ -155,8 +155,8 @@
    }
   },
   "税务总局-工作通知": {
-   "last_ok": "2026-11-19T19:08:16+00:00",
-   "last_run": "2026-11-19T19:08:16+00:00",
+   "last_ok": "2026-11-25T20:05:10+00:00",
+   "last_run": "2026-11-25T20:05:10+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102424/c5233098/content.html": {
      "pushed": false,
@@ -291,8 +291,8 @@
    }
   },
   "税务总局-意见征集": {
-   "last_ok": "2026-11-19T19:07:34+00:00",
-   "last_run": "2026-11-19T19:07:34+00:00",
+   "last_ok": "2026-11-25T20:05:02+00:00",
+   "last_run": "2026-11-25T20:05:02+00:00",
    "urls": {
     "https://www.chinatax.gov.cn/chinatax/n810356/n810961/c5237598/content.html": {
      "pushed": false,
@@ -378,8 +378,8 @@
    }
   },
   "税务总局-税务规范性文件": {
-   "last_ok": "2026-11-19T19:08:12+00:00",
-   "last_run": "2026-11-19T19:08:12+00:00",
+   "last_ok": "2026-11-25T20:05:07+00:00",
+   "last_run": "2026-11-25T20:05:07+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5239258/content.html": {
      "pushed": false,
@@ -660,8 +660,8 @@
    }
   },
   "税务总局-财税文件": {
-   "last_ok": "2026-11-19T19:08:15+00:00",
-   "last_run": "2026-11-19T19:08:15+00:00",
+   "last_ok": "2026-11-25T20:05:09+00:00",
+   "last_run": "2026-11-25T20:05:09+00:00",
    "urls": {
     "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247182/content.html": {
      "pushed": false,
@@ -935,8 +935,8 @@
    }
   },
   "财政部-意见征集": {
-   "last_ok": "2026-11-19T19:08:09+00:00",
-   "last_run": "2026-11-19T19:08:09+00:00",
+   "last_ok": "2026-11-25T20:05:03+00:00",
+   "last_run": "2026-11-25T20:05:03+00:00",
    "urls": {
     "http://gks.mof.gov.cn/gongzuodongtai/202510/t20251028_3975062.htm": {
      "pushed": false,
@@ -1115,8 +1115,8 @@
    }
   },
   "财政部-政策发布": {
-   "last_ok": "2026-11-19T19:08:17+00:00",
-   "last_run": "2026-11-19T19:08:17+00:00",
+   "last_ok": "2026-11-25T20:06:28+00:00",
+   "last_run": "2026-11-25T20:06:28+00:00",
    "urls": {
     "http://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
      "pushed": false,
@@ -1256,6 +1256,13 @@
      "title": "财政部印发《会计改革与发展“十五五”规划》",
      "url": "http://kjs.mof.gov.cn/zhengcefabu/202611/t20261105_4004148.htm"
     },
+    "http://nys.mof.gov.cn/czpjZhengCeFaBu_2_2/202611/t20261124_4005326.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-25T20:05:19+00:00",
+     "skip": "irrelevant",
+     "title": "财政部等五部门制定印发 《常态化帮扶资金绩效评价办法》",
+     "url": "http://nys.mof.gov.cn/czpjZhengCeFaBu_2_2/202611/t20261124_4005326.htm"
+    },
     "http://sbs.mof.gov.cn/zhengcefabu/202604/t20260421_3988007.htm": {
      "pushed": false,
      "seen_at": "2026-10-31T15:53:29+00:00",
@@ -1320,6 +1327,50 @@
      "seen_at": "2026-11-06T17:39:42+00:00",
      "title": "《中央自然灾害救灾资金管理办法》修订印发",
      "url": "http://zyhj.mof.gov.cn/zcfb/202611/t20261103_4003960.htm"
+    },
+    "https://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-25T20:06:07+00:00",
+     "skip": "stale",
+     "title": "《紧急采购管理暂行办法》印发",
+     "url": "https://gks.mof.gov.cn/guizhangzhidu/202609/t20260911_3997286.htm"
+    },
+    "https://gks.mof.gov.cn/guizhangzhidu/202611/t20261104_4004092.htm": {
+     "pushed": true,
+     "seen_at": "2026-11-25T20:05:58+00:00",
+     "title": "财政部关于实施《政府部门财务报告编制操作指南》的通知",
+     "url": "https://gks.mof.gov.cn/guizhangzhidu/202611/t20261104_4004092.htm"
+    },
+    "https://gks.mof.gov.cn/guizhangzhidu/202611/t20261104_4004093.htm": {
+     "pushed": true,
+     "seen_at": "2026-11-25T20:05:44+00:00",
+     "title": "财政部关于实施《政府综合财务报告编制操作指南》的通知",
+     "url": "https://gks.mof.gov.cn/guizhangzhidu/202611/t20261104_4004093.htm"
+    },
+    "https://gss.mof.gov.cn/gzdt/zhengcefabu/202611/t20261109_4004260.htm": {
+     "pushed": true,
+     "seen_at": "2026-11-25T20:05:35+00:00",
+     "title": "国务院关税税则委员会关于调整对原产于美国的进口商品加征关税措施的公告",
+     "url": "https://gss.mof.gov.cn/gzdt/zhengcefabu/202611/t20261109_4004260.htm"
+    },
+    "https://szs.mof.gov.cn/zhengcefabu/202608/t20260828_3996295.htm": {
+     "pushed": false,
+     "seen_at": "2026-11-25T20:06:18+00:00",
+     "skip": "stale",
+     "title": "非应税交易等增值税有关事项明确",
+     "url": "https://szs.mof.gov.cn/zhengcefabu/202608/t20260828_3996295.htm"
+    },
+    "https://tfs.mof.gov.cn/zhengcefabu/202611/t20261111_4004415.htm": {
+     "pushed": true,
+     "seen_at": "2026-11-25T20:05:29+00:00",
+     "title": "《财政部门行使行政处罚裁量权指导规范》修订印发",
+     "url": "https://tfs.mof.gov.cn/zhengcefabu/202611/t20261111_4004415.htm"
+    },
+    "https://yss.mof.gov.cn/zhengceguizhang/202608/t20260826_3996140.htm": {
+     "pushed": true,
+     "seen_at": "2026-11-25T20:06:28+00:00",
+     "title": "财政部制定实施《2027年政府收支分类科目》",
+     "url": "https://yss.mof.gov.cn/zhengceguizhang/202608/t20260826_3996140.htm"
     }
    }
   }
